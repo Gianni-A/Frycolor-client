@@ -1,8 +1,16 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Intro from './Intro';
+import Signup from './Signup';
 
 function App() {
   return(
-    <h1>Just one component: App with some changess</h1>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Intro} />
+        <Route exact path="/signup" component={Signup} />
+      </Switch>
+    </BrowserRouter>
   )
 }
 
