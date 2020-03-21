@@ -8,7 +8,7 @@ function Intro() {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-md-4 offset-md-4" id="menu_support">
-            <div className="menu_container text-center">
+            <div className="menu_container text-center border rounded">
               <div className="col-md-12">
                 <img src="" alt="Logotipo"/>
               </div>
