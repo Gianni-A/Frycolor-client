@@ -7,8 +7,12 @@ export const createUser = () => (dispatch) => {
     usPassword: '123456',
     usEmail: 'testcomponent@hot.com'
   };
-
-  fetch(`${SERVER}/users`, {
+  //console.log(data)
+  dispatch({
+    type: CREATE_USER,
+    payload: 'hola' 
+  })
+  /*fetch(`${SERVER}/users`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -26,5 +30,5 @@ export const createUser = () => (dispatch) => {
       type: ERROR,
       payload: error
     })
-  })
+  })*/
 }

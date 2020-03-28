@@ -1,7 +1,7 @@
 import { CREATE_USER } from '../types/SignUpTypes';
 
 const INITIAL_STATE = {
-  user_created: Object,
+  user_created: {},
   usEmail: '',
   usUser: '',
   usPassword: '',
@@ -14,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
       case CREATE_USER:
         return {
           ...state,
-          user_created: action.payload,
+          usUser: action.payload,
           loading: false,
           error: ''
         };

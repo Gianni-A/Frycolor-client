@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import * as signupActions from '../redux/actions/SignUpAction';
 
-function Signup() {
+const { createUser } = signupActions;
+
+function Signup(props) {
+
+  useEffect(() => {
+
+  }, [1])
+
   return(
     <section id="intro_container">
       <div className="container">
@@ -10,19 +19,19 @@ function Signup() {
               <div className="col-md-12">
                 <h4 className="mb-4 mt-3">Registro de usuario</h4>
                 <form>
-                  <div class="form-group">
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" />
+                  <div className="form-group">
+                    <input type="email" className="form-control" id="inputEmail" placeholder="Email" />
                   </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="inputUserName" placeholder="Username" />
+                  <div className="form-group">
+                    <input type="text" className="form-control" id="inputUserName" placeholder="Username" />
                   </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" />
+                  <div className="form-group">
+                    <input type="password" className="form-control" id="inputPassword" placeholder="Password" />
                   </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm password" />
+                  <div className="form-group">
+                    <input type="password" className="form-control" id="inputConfirmPassword" placeholder="Confirm password" />
                   </div>
-                  <button type="submit" class="btn btn-primary btn-block">Register</button>
+                  <button type="submit" className="btn btn-primary btn-block" onClick={() => props.createUser()}>Register</button>
                 </form>
               </div>
             </div>
@@ -33,4 +42,16 @@ function Signup() {
   )
 }
 
-export default Signup;
+const mapStateToProps = (state) => {
+  return {
+    usUser: state.signUpReducer.usUser
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createUser: () => dispatch(createUser())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
