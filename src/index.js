@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './redux/reducers';
 
-const store = createStore(
+const store = createStore (
   reducers,
   {},
   applyMiddleware(reduxThunk)

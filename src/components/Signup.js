@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as signupActions from '../redux/actions/SignUpAction';
 
@@ -6,9 +6,7 @@ const { createUser } = signupActions;
 
 function Signup(props) {
 
-  useEffect(() => {
-
-  }, [1])
+  const example = props.usEmail;
 
   return(
     <section id="intro_container">
@@ -20,7 +18,7 @@ function Signup(props) {
                 <h4 className="mb-4 mt-3">Registro de usuario</h4>
                 <form>
                   <div className="form-group">
-                    <input type="email" className="form-control" id="inputEmail" placeholder="Email" />
+                    <input type="email" className="form-control" id="inputEmail" placeholder={example} />
                   </div>
                   <div className="form-group">
                     <input type="text" className="form-control" id="inputUserName" placeholder="Username" />
@@ -31,8 +29,8 @@ function Signup(props) {
                   <div className="form-group">
                     <input type="password" className="form-control" id="inputConfirmPassword" placeholder="Confirm password" />
                   </div>
-                  <button type="submit" className="btn btn-primary btn-block" onClick={() => props.createUser()}>Register</button>
                 </form>
+                <button className="btn btn-primary btn-block" onClick={() => props.createUser()}>Register</button>
               </div>
             </div>
           </div>
@@ -44,7 +42,7 @@ function Signup(props) {
 
 const mapStateToProps = (state) => {
   return {
-    usUser: state.signUpReducer.usUser
+    usEmail: state.signUpReducer.usEmail
   }
 };
 
