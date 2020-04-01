@@ -14,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
       case CREATE_USER:
         return {
           ...state,
-          usEmail: action.payload,
+          user_created: action.payload,
           loading: false,
           error: ''
         };
