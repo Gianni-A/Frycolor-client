@@ -1,4 +1,4 @@
-import { CREATE_USER } from '../types/SignUpTypes';
+import { CREATE_USER, ERROR } from '../types/SignUpTypes';
 
 const INITIAL_STATE = {
   user_created: {},
@@ -18,6 +18,14 @@ export default (state = INITIAL_STATE, action) => {
           loading: false,
           error: ''
         };
+
+      case ERROR:
+        return {
+          ...state,
+          user_created: {},
+          loading: false,
+          error: action.payload
+        }  
         
       default: return state;  
   }

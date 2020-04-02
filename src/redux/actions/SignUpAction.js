@@ -2,18 +2,31 @@ import { CREATE_USER, LOADING, ERROR } from '../types/SignUpTypes';
 import { SERVER } from '../../util/GlobalVariables';
 
 export const createUser = (data) => async (dispatch) => {
-  //console.log("Data from the action :"+data.usUser);
-  /*dispatch({
-    type: CREATE_USER,
-    payload: 'admin' 
-  })*/
-  fetch(`${SERVER}/users`, {
+  await fetch(`${SERVER}/users`, {
+    mode: 'cors',
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
-      'Content-type': 'application/json'
+      'Content-type': 'application/json',
+      Accept: 'application/json'
     }
-  }).then(response => console.log(JSON.stringify(response.json())))
+  }).then(response => {
+    const data = response.json();
+    data.then(res =>  {
+      console.log(`Code status: ${res.codeStatus}`)
+      if(res.codeStatus == 200) {
+        dispatch({
+          type: CREATE_USER,
+          payload: res
+        })
+      } else {
+        dispatch({
+          type: ERROR,
+          payload: res.message
+        })
+      }
+    })
+  })
 
   /**
    * fetch(`${SERVER}/users`, {

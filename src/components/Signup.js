@@ -28,12 +28,16 @@ class Signup extends Component {
     }
     
     await this.props.createUser(dataUser);
-
-    const example = this.props.user_created;
-    //console.log("Response: "+JSON.stringify(example))
   }
 
   render(props) {
+    const example = this.props;
+
+    if(example.error != '') {
+      console.log(example.error);
+    } else {
+      console.log(example.user_created);
+    }
     
     return(
       <section id="intro_container">
