@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as signupActions from '../redux/actions/SignUpAction';
+
+import Loader from './Loader';
 
 const { createUser } = signupActions;
 
@@ -64,6 +66,7 @@ class Signup extends Component {
                   <button className="btn btn-primary btn-block" onClick={() => this.handleSendData()}>Register</button>
                 </div>
               </div>
+              <Loader />
             </div>
           </div>
         </div>
