@@ -6,7 +6,8 @@ import { createUser } from '../redux/actions/SignUpAction';
 const mapStateToProps = state => {
   return {
     user_created: state.signUpReducer.user_created,
-    error: state.signUpReducer.error
+    error: state.signUpReducer.error,
+    loading: state.signUpReducer.loading
   }
 };
 

@@ -1,4 +1,4 @@
-import { CREATE_USER, ERROR } from '../types/SignUpTypes';
+import { CREATE_USER, LOADING, ERROR } from '../types/SignUpTypes';
 
 const INITIAL_STATE = {
   user_created: {},
@@ -8,22 +8,28 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
-      case CREATE_USER:
-        return {
-          ...state,
-          user_created: action.payload,
-          loading: false,
-          error: ''
-        };
+    case CREATE_USER:
+      return {
+        ...state,
+        user_created: action.payload,
+        loading: false,
+        error: ''
+      };
 
-      case ERROR:
-        return {
-          ...state,
-          user_created: {},
-          loading: false,
-          error: action.payload
-        }  
-        
-      default: return state;  
+    case ERROR:
+      return {
+        ...state,
+        user_created: {},
+        loading: false,
+        error: action.payload
+      }
+      
+    case LOADING:
+      return {
+        ...state,
+        loading: true
+      }
+      
+    default: return state;  
   }
 }

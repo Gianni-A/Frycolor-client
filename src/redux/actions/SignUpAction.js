@@ -2,6 +2,11 @@ import { CREATE_USER, LOADING, ERROR } from '../types/SignUpTypes';
 import { SERVER } from '../../util/GlobalVariables';
 
 export const createUser = (data) => async (dispatch) => {
+
+  dispatch({
+    type: LOADING
+  })
+
   await fetch(`${SERVER}/users`, {
     mode: 'cors',
     method: 'POST',

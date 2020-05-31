@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Loader from './Loader';
 
 class Signup extends Component {
@@ -29,14 +28,21 @@ class Signup extends Component {
   }
 
   render(props) {
-    const {user_created, error} = this.props;
+    const {user_created, error, loading} = this.props;
+
+    if(loading) {
+      console.log("Cargando");
+    }
+    else {
+      console.log("NO Cargando");
+    }
 
     if(error != '') {
       console.log(error);
     } else {
       console.log("Datos: "+user_created.usEmail);
     }
-    
+
     return(
       <section id="intro_container">
         <div className="container">
@@ -62,7 +68,7 @@ class Signup extends Component {
                   <button className="btn btn-primary btn-block" onClick={() => this.handleSendData()}>Register</button>
                 </div>
               </div>
-              <Loader />
+              {loading && <Loader />}
             </div>
           </div>
         </div>
