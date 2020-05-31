@@ -1,10 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import * as signupActions from '../redux/actions/SignUpAction';
+import React, { Component } from 'react';
 
 import Loader from './Loader';
-
-const { createUser } = signupActions;
 
 class Signup extends Component {
 
@@ -75,17 +71,4 @@ class Signup extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user_created: state.signUpReducer.user_created,
-    error: state.signUpReducer.error
-  }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    createUser: data => dispatch(createUser(data))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default Signup;
