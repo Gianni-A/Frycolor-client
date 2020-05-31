@@ -2,9 +2,6 @@ import { CREATE_USER, ERROR } from '../types/SignUpTypes';
 
 const INITIAL_STATE = {
   user_created: {},
-  usEmail: '',
-  usUser: '',
-  usPassword: '',
   loading: false,
   error: ''
 };

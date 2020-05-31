@@ -33,12 +33,12 @@ class Signup extends Component {
   }
 
   render(props) {
-    const example = this.props;
+    const {user_created, error} = this.props;
 
-    if(example.error != '') {
-      console.log(example.error);
+    if(error != '') {
+      console.log(error);
     } else {
-      console.log(example.user_created);
+      console.log("Datos: "+user_created.usEmail);
     }
     
     return(
@@ -73,18 +73,18 @@ class Signup extends Component {
       </section>
     )
   }
- 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    user_created: state.signUpReducer.user_created
+    user_created: state.signUpReducer.user_created,
+    error: state.signUpReducer.error
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createUser: (data) => dispatch(createUser(data))
+    createUser: data => dispatch(createUser(data))
   }
 }
 

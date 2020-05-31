@@ -11,44 +11,44 @@ export const createUser = (data) => async (dispatch) => {
       Accept: 'application/json'
     }
   }).then(response => {
-    const data = response.json();
-    data.then(res =>  {
-      console.log(`Code status: ${res.codeStatus}`)
-      if(res.codeStatus == 200) {
+    const statusCode = response.status;
+    if(statusCode == 200) {
+      return response.json().then(data => {
         dispatch({
           type: CREATE_USER,
-          payload: res
+          payload: data
         })
-      } else {
+      });
+    }
+    else {
+      return response.text().then(error => {
         dispatch({
           type: ERROR,
-          payload: res.message
+          payload: error
         })
-      }
-    })
+      });
+    } 
   })
-
-  /**
-   * fetch(`${SERVER}/users`, {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-type': 'application/json'
-    }
-  })
-  .then(response => {
-    console.log("Response from the action: "+JSON.stringify(response.json()))
-    dispatch({
-      type: CREATE_USER,
-      payload: response.data 
-    })
-  })
-  .catch(error => {
-    console.log(error);
-    dispatch({
-      type: ERROR,
-      payload: error
-    })
-  })
-   */
 }
+
+
+/**How was before:
+ * .then(response => {
+    const statusCode = response.status;
+    if(statusCode == 200) {
+      const data = response.json();
+
+      data.then(data =>  {
+        dispatch({
+          type: CREATE_USER,
+          payload: data
+        })
+      })
+    }
+    else {
+      Here doesn't work correctly
+      console.log(`Respuesta: ${response}`);
+      //console.log(`Respuesta: ${JSON.stringify(response)}`);
+    } 
+  })
+ */
