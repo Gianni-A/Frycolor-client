@@ -1,0 +1,14 @@
+.menu_container {
+  height: 380px;
+  margin-top: 120px;
+  width: 100%;
+}
+
+#menu_support {
+  padding: 0;
+}
+
+.linkBack {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

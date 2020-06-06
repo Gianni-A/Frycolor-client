@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Intro from './Intro';
-import Signup from './Signup';
+import Intro from '../pages/Intro';
+import Signup from '../pages/Signup';
 
 //Containers
 import SignupContainer from '../containers/SignupContainer';

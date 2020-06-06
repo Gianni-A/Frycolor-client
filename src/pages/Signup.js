@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import Loader from './Loader';
+import { Link } from 'react-router-dom';
+import Loader from '../components/Loader';
+
+import '../css/signup.css';
 
 class Signup extends Component {
 
@@ -66,6 +69,9 @@ class Signup extends Component {
                     </div>
                   </form>
                   <button className="btn btn-primary btn-block" onClick={() => this.handleSendData()}>Register</button>
+                </div>
+                <div className="col-md-12 linkBack">
+                  <Link to='/' className="text-decoration-none">Back to the main</Link>
                 </div>
               </div>
               {loading && <Loader />}
