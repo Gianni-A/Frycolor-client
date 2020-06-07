@@ -1,11 +1,60 @@
 import { CREATE_USER, LOADING, ERROR } from '../types/SignUpTypes';
-import { SERVER } from '../../util/GlobalVariables';
+import { serviceCall } from '../../util/Utils';
+
+export const createUserSuccess = response => {
+  return {
+    type: CREATE_USER,
+    payload: response
+  };
+};
+
+export const createUserFailure = error => {
+  return {
+    type: ERROR,
+    payload: error
+  }
+};
 
 export const createUser = (data) => async (dispatch) => {
-
+  
   dispatch({
     type: LOADING
   })
+
+  serviceCall(
+    {
+      url: '/users',
+      method: 'POST',
+      body: JSON.stringify(data)
+    },
+    dispatch,
+    createUserSuccess,
+    createUserFailure
+  );
+}
+
+
+/**How was before:
+ * .then(response => {
+    const statusCode = response.status;
+    if(statusCode == 200) {
+      const data = response.json();
+
+      data.then(data =>  {
+        dispatch({
+          type: CREATE_USER,
+          payload: data
+        })
+      })
+    }
+    else {
+      Here doesn't work correctly
+      console.log(`Respuesta: ${response}`);
+      //console.log(`Respuesta: ${JSON.stringify(response)}`);
+    } 
+  })
+
+  The last one:
 
   await fetch(`${SERVER}/users`, {
     mode: 'cors',
@@ -32,28 +81,6 @@ export const createUser = (data) => async (dispatch) => {
           payload: error
         })
       });
-    } 
-  })
-}
-
-
-/**How was before:
- * .then(response => {
-    const statusCode = response.status;
-    if(statusCode == 200) {
-      const data = response.json();
-
-      data.then(data =>  {
-        dispatch({
-          type: CREATE_USER,
-          payload: data
-        })
-      })
-    }
-    else {
-      Here doesn't work correctly
-      console.log(`Respuesta: ${response}`);
-      //console.log(`Respuesta: ${JSON.stringify(response)}`);
     } 
   })
  */

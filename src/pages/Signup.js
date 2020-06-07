@@ -30,7 +30,7 @@ class Signup extends Component {
     await this.props.createUser(dataUser);
   }
 
-  render(props) {
+  render() {
     const {user_created, error, loading} = this.props;
 
     if(loading) {
