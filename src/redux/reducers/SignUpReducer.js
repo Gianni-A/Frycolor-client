@@ -27,7 +27,8 @@ export default (state = INITIAL_STATE, action) => {
     case LOADING:
       return {
         ...state,
-        loading: true
+        loading: true,
+        error: ''
       }
       
     default: return state;  

@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../components/Loader';
+import ErrorSignup from '../components/ErrorSignup';
+import $ from 'jquery'; 
 
 import '../css/signup.css';
+
+import Modal from '../components/Modal';
 
 class Signup extends Component {
 
@@ -21,29 +25,40 @@ class Signup extends Component {
   }
 
   async handleSendData() {
-    const dataUser = {
-      usUser: this.state.username,
-      usPassword: this.state.password,
-      usEmail: this.state.email
+    const password_1 = this.state.password;
+    const password_2 = this.state.confirmpassword;
+
+    if(password_1 !== password_2) {
+      this.sendErrorPasswords();
+    } else {
+      const dataUser = {
+        usUser: this.state.username,
+        usPassword: this.state.password,
+        usEmail: this.state.email
+      }
+      
+      await this.props.createUser(dataUser);
     }
-    
-    await this.props.createUser(dataUser);
+  }
+
+  sendErrorPasswords() {
+    this.props.errorPasswords("Passwords don't Match");
+  }
+
+  handleOpenModal() {
+    $('#GeneralModal').modal('show');
+  }
+
+  handleGoToMain() {
+    window.location.href = "/";
   }
 
   render() {
     const {user_created, error, loading} = this.props;
-
-    if(loading) {
-      console.log("Cargando");
-    }
-    else {
-      console.log("NO Cargando");
-    }
-
-    if(error != '') {
-      console.log(error);
-    } else {
+    
+    if(Object.keys(user_created).length > 0) {
       console.log("Datos: "+user_created.usEmail);
+      this.handleOpenModal();
     }
 
     return(
@@ -54,6 +69,7 @@ class Signup extends Component {
               <div className="menu_container text-center border rounded">
                 <div className="col-md-12">
                   <h4 className="mb-4 mt-3">Registro de usuario</h4>
+                  {error.length > 0 && <ErrorSignup error={error} />}
                   <form>
                     <div className="form-group">
                       <input type="email" className="form-control" name='email' id="inputEmail" placeholder="Email" onChange={(e) => this.handleChange(e)} />
@@ -77,6 +93,9 @@ class Signup extends Component {
               {loading && <Loader />}
             </div>
           </div>
+          <Modal title={'User created'} acceptButton={() => this.handleGoToMain()}>
+            <p>Thank you for signup in <strong>Frycolor</strong>. We already sent you an email to: <strong>{user_created.usEmail}</strong> to verify your account</p>
+          </Modal>
         </div>
       </section>
     )
