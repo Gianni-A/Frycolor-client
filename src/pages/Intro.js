@@ -16,7 +16,7 @@ function Intro() {
                 <h5>Bienvenido a Frycolor, la red social de mi infancia</h5>
               </div>
               <div className="col-md-12 mb-3">
-                <button className="btn btn-success btn-block">Log In</button>
+                <a href="/profile" className="btn btn-success btn-block">Log In</a>
               </div>
               <div className="col-md-12">
                 <Link to='/Signup' className="btn btn-info btn-block">Sign Up</Link>
