@@ -8,13 +8,20 @@ export const serviceCall = (config, dispatch, callSuccess, callFailure) => {
     }
   }).then(response => {
     const statusCode = response.status;
+    let errorArray = Array();
     if(statusCode == 200) {
       response.json().then(data => {
         dispatch(callSuccess(data))
       }); 
+    } else if(statusCode == 400) {
+      response.json().then(data => {
+        errorArray = data.errors;
+        dispatch(callFailure(errorArray))
+      }); 
     } else {
       response.text().then(error => {
-        dispatch(callFailure(error))
+        errorArray.push(error);
+        dispatch(callFailure(errorArray))
       });
     }
   })

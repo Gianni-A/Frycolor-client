@@ -42,7 +42,9 @@ class Signup extends Component {
   }
 
   sendErrorPasswords() {
-    this.props.errorPasswords("Passwords don't Match");
+    const errorArray = Array();
+    errorArray.push("Passwords don't Match");
+    this.props.errorPasswords(errorArray);
   }
 
   handleOpenModal() {
@@ -57,7 +59,6 @@ class Signup extends Component {
     const {user_created, error, loading} = this.props;
     
     if(Object.keys(user_created).length > 0) {
-      console.log("Datos: "+user_created.usEmail);
       this.handleOpenModal();
     }
 

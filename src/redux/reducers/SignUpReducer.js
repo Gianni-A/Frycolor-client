@@ -3,7 +3,7 @@ import { CREATE_USER, LOADING, ERROR } from '../types/SignUpTypes';
 const INITIAL_STATE = {
   user_created: {},
   loading: false,
-  error: ''
+  error: []
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -13,7 +13,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         user_created: action.payload,
         loading: false,
-        error: ''
+        error: []
       };
 
     case ERROR:
@@ -28,7 +28,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: true,
-        error: ''
+        error: []
       }
       
     default: return state;  
