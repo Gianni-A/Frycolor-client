@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Signup from '../pages/Signup';
-import { createUser, errorPasswords } from '../redux/actions/SignUpAction';
+import { createUser } from '../redux/actions/SignUpAction';
+import { ERROR } from '../redux/types/SignUpTypes';
 
 
 const mapStateToProps = state => {
@@ -15,7 +16,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createUser: data => dispatch(createUser(data)),
-    errorPasswords: error => dispatch(errorPasswords(error))
+    errorPasswords: error => dispatch({type: ERROR, payload: error})
   }
 }
 

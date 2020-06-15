@@ -33,13 +33,6 @@ export const createUser = (data) => async (dispatch) => {
   );
 }
 
-export const errorPasswords = error => dispatch => {
-  dispatch({
-    type: ERROR,
-    payload: error
-  })
-};
-
 
 /**How was before:
  * .then(response => {
