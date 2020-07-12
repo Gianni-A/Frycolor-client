@@ -1,0 +1,27 @@
+.profile_image {
+  width: 250px;
+  height: 250px;
+}
+
+.imagesUser {
+  width: 203px;
+  height: 203px;
+  margin: 30px;
+}
+
+.container-user-photos {
+  margin: auto;
+  width: 100%;;
+  padding: 10px;
+}
+
+
+.info-image {
+  position: absolute;
+  width: 203px;
+  line-height: 50px;
+  left: 70px;
+  top: 200px;
+  color: white;
+  font-weight:bold;
+}
