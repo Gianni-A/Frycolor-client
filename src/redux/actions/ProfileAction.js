@@ -1,8 +1,7 @@
 import {GET_USER_INFORMATION_SUCCESS, 
-        GET_USER_INFORMATION_FAILURE, 
-				LOADING_PROFILE} from '../types/ProfileTypes';
+        GET_USER_INFORMATION_FAILURE} from '../types/ProfileTypes';
 				
-import { serviceCall } from '../../util/Utils';				
+import { serviceCall } from '../../util/Utils';			
 
 export const getUserInformationSuccess = response => {
 	return {

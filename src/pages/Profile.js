@@ -11,10 +11,6 @@ class Profile extends Component {
     super(props);
   }
 
-  componentWillUnmount (){
-    console.log("Hola a todos")
-  }
-
   componentDidMount() {
     //this.getUserInformation();
   }
@@ -46,6 +42,11 @@ class Profile extends Component {
                 </div>
               </div>
               <div className="col-md-3 border">
+                <div className="row">
+                    <button type="button" class="btn btn-primary btn-ls float-right">
+                      <a href="/editProfile">Edit</a>
+                    </button>
+                </div>
                 <div className="row">
                   <p>Pais:</p>
                   <p>Mexico</p>
