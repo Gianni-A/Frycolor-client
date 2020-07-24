@@ -1,5 +1,6 @@
 import { SAVE_INFORMATION_SUCCESS,
-         SAVE_INFORMATION_FAILURE } from '../types/ProfileFormTypes';
+				 SAVE_INFORMATION_FAILURE,
+				 LOADING_PROFILE_FORM } from '../types/ProfileFormTypes';
 
 import { serviceCall } from '../../util/Utils';	
 
@@ -18,11 +19,16 @@ export const saveInformationFailure = error => {
 }
 
 export const saveInformation = userInfo => async dispatch => {
+
+	dispatch({
+    type: LOADING_PROFILE_FORM
+  })
+
   serviceCall(
 		{
-			url: `/profile/${userId}`,
+			url: '/profile',
       method: 'PUT',
-      body: Object.entries(userInfo)
+      body: JSON.stringify(userInfo)
 		},
 		dispatch,
 		saveInformationSuccess,

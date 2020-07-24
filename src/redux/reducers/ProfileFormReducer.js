@@ -1,10 +1,11 @@
 import { SAVE_INFORMATION_SUCCESS,
-  SAVE_INFORMATION_FAILURE } from '../types/ProfileFormTypes';
+         SAVE_INFORMATION_FAILURE,
+         LOADING_PROFILE_FORM } from '../types/ProfileFormTypes';
 
   const INITIAL_STATE = {
-    userInfo: {},
+    userInfoUpdated: {},
     loader: false,
-    error: ''
+    error: []
   }
 
   export default (state = INITIAL_STATE, action) => {
@@ -12,7 +13,7 @@ import { SAVE_INFORMATION_SUCCESS,
       case SAVE_INFORMATION_SUCCESS:
         return {
           ...state,
-          userInfo: action.payload,
+          userInfoUpdated: action.payload,
           loader: false
         }
 
@@ -22,6 +23,13 @@ import { SAVE_INFORMATION_SUCCESS,
           error: action.payload,
           loader: false
         }
+
+      case LOADING_PROFILE_FORM:
+        return {
+          ...state,
+          error: [],
+          loader: true
+        }  
         
         default: return state;  
     }

@@ -3,9 +3,11 @@ import ProfileForm from '../pages/ProfileForm';
 import { saveInformation } from '../redux/actions/ProfileFormAction';
 
 const mapStateToProps = state => {
-  const {userInfo, loader, error} = state.profileFormReducer;
+  const {userInfoUpdated, loader, error} = state.profileFormReducer;
+  const { user_information } = state.profileReducer;
+  console.log(user_information);
   return {
-    userInfo,
+    userInfoUpdated,
     loader,
     error
   }
