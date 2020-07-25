@@ -6,6 +6,7 @@ import Intro from '../pages/Intro';
 import SignupContainer from '../containers/SignupContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import ProfileFormContainer from '../containers/ProfileFormContainer';
+import ForgotPasswordContainer from '../containers/ForgotPasswordContainer';
 
 function App() {
   return(
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/signup" component={SignupContainer} />
         <Route exact path="/profile" component={ProfileContainer} />
         <Route exact path="/editProfile" component={ProfileFormContainer} />
+        <Route exact path="/forgotPassword" component={ForgotPasswordContainer} />
       </Switch>
     </BrowserRouter>
   )
