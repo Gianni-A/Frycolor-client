@@ -10,11 +10,18 @@ class ForgotPassword extends Component {
     };
 
     this.handleEmailInput = this.handleEmailInput.bind(this);
-
   }
 
   handleEmailInput(event) {
     this.setState({emailInput: event.target.value});
+  }
+
+  redirectToLogin() {
+    window.location = '../';
+  }
+
+  changeErrorValue() {
+    this.props.changeErrorValue();
   }
 
   async handleSendData() {
@@ -23,13 +30,16 @@ class ForgotPassword extends Component {
 
   render() {
     const { emailSentStatus, loader, error } = this.props;
-    if(emailSentStatus != "") {
+    if(emailSentStatus) {
       alert("Data has been sent it");
+      this.redirectToLogin();
     }
 
     if(error.length > 0) {
+      this.changeErrorValue();
       alert("There is an error");
     }
+
     return(
       <section>
         <div className="container">

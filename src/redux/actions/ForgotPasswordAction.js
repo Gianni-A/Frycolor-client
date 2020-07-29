@@ -24,14 +24,10 @@ import { SEND_EMAIL_SUCCESS_FORGOTPASSWORD,
      type: LOADING_FORGOTPASSWORD
    })
 
-   const formData = new FormData();
-   formData.append('emailID', emailInput);
-
    serviceCall(
      {
-       url: '/session/password',
-       method: 'POST',
-       body: formData
+       url: `/session/password?emailID=${emailInput}`,
+       method: 'POST'
      },
      dispatch,
      sendEmailSuccess,

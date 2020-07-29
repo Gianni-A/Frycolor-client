@@ -1,6 +1,7 @@
 import { SEND_EMAIL_SUCCESS_FORGOTPASSWORD,
          SEND_EMAIL_FAILURE_FORGOTPASSWORD,
-         LOADING_FORGOTPASSWORD } from '../types/ForgotPasswordTypes';
+         LOADING_FORGOTPASSWORD,
+         RESTORE_PASSWORD_CHANGE_ERROR_VALUE } from '../types/ForgotPasswordTypes';
 
 const INITIAL_STATE = {
   emailSentStatus: false,
@@ -30,7 +31,13 @@ export default (state = INITIAL_STATE, action) => {
        return {
          ...state,
          loader: true
-       } 
+       }
+       
+    case RESTORE_PASSWORD_CHANGE_ERROR_VALUE:
+      return {
+        ...state,
+        error: []
+      }
 
      default: return state;  
   }
