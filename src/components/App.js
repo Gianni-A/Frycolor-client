@@ -8,6 +8,7 @@ import ProfileContainer from '../containers/ProfileContainer';
 import ProfileFormContainer from '../containers/ProfileFormContainer';
 import ForgotPasswordContainer from '../containers/ForgotPasswordContainer';
 import RestorePasswordContainer from '../containers/RestorePasswordContainer';
+import ChangePasswordContainer from '../containers/ChangePasswordContainer';
 
 function App() {
   return(
@@ -19,6 +20,7 @@ function App() {
         <Route exact path="/editProfile" component={ProfileFormContainer} />
         <Route exact path="/forgotPassword" component={ForgotPasswordContainer} />
         <Route exact path="/restorePassword/:userId" component={RestorePasswordContainer} />
+        <Route exact path="/changePassword/" component={ChangePasswordContainer} />
       </Switch>
     </BrowserRouter>
   )
