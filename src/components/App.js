@@ -9,12 +9,14 @@ import ProfileFormContainer from '../containers/ProfileFormContainer';
 import ForgotPasswordContainer from '../containers/ForgotPasswordContainer';
 import RestorePasswordContainer from '../containers/RestorePasswordContainer';
 import ChangePasswordContainer from '../containers/ChangePasswordContainer';
+import LoginContainer from '../containers/LoginContainer';
 
 function App() {
   return(
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Intro} />
+        <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/signup" component={SignupContainer} />
         <Route exact path="/profile" component={ProfileContainer} />
         <Route exact path="/editProfile" component={ProfileFormContainer} />
