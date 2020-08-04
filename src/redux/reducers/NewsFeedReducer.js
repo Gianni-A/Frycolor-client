@@ -1,32 +1,29 @@
-import { LOGIN_SUCCESSFUL,
-         LOGIN_FAILURE,
-         LOGIN_LOADER } from '../types/LoginTypes';
+import { GET_POSTS_SUCCESSFULL,
+         GET_POSTS_FAILURE,
+         GET_POSTS_LOADER } from '../types/NewsFeedTypes';
 
 const INITIAL_STATE = {
-  credentials: {},
   loader: false,
   error: []
 };
 
 export default(state = INITIAL_STATE, action) => {
   switch(action.type) {
-    case LOGIN_SUCCESSFUL:
+    case GET_POSTS_SUCCESSFULL:
       return {
         ...state,
-        credentials: action.payload,
         loader: false,
         error: []
       }
 
-    case LOGIN_FAILURE:
+    case GET_POSTS_FAILURE:
       return {
         ...state,
-        credentials: {},
         loader: false,
         error: action.payload
-      }
+      }  
 
-    case LOGIN_LOADER:
+    case GET_POSTS_LOADER:
       return {
         ...state,
         loader: true
