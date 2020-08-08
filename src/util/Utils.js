@@ -1,11 +1,19 @@
-export const serviceCall = (config, dispatch, callSuccess, callFailure) => {
-  fetch(`http://localhost:8090${config.url}`, {
-    ...config,
-    mode: 'cors',
-    headers: {
+export const serviceCall = (config, dispatch, callSuccess, callFailure, contentTypeJson = true) => {
+  let header;
+  if(contentTypeJson) {
+    header = {
       'Content-type': 'application/json',
       Accept: 'application/json'
     }
+  }
+  else {
+    header = { Accept: 'application/json' }
+  }
+
+  fetch(`http://localhost:8090${config.url}`, {
+    ...config,
+    mode: 'cors',
+    headers: header
   }).then(response => {
     const statusCode = response.status;
     let errorArray = Array();
