@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NewsFeed from '../pages/NewsFeed';
-import { getListPost } from '../redux/actions/NewsFeedAction';
+import { getListPost, createPost } from '../redux/actions/NewsFeedAction';
 
 const mapStateToProps = state => {
   const { loader, error } = state.newsFeedReducer;
@@ -12,7 +12,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getListPost: data => dispatch(getListPost(data))
+    getListPost: data => dispatch(getListPost(data)),
+    createPost: dataForm => dispatch(createPost(dataForm))
   }
 };
 

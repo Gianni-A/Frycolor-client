@@ -1,0 +1,18 @@
+/*FormPost section*/
+
+.image-upload>input {
+  display: none;
+}
+
+.image-upload {
+  float: right;
+  cursor: pointer;
+}
+
+.form_post_container {
+  margin: 30px;
+  padding: 15px;
+  border: 1px solid rgb(224, 224, 224);
+}
+
+/*FormPost section*/
