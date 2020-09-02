@@ -2,6 +2,7 @@ import React, { useState, useCallback} from 'react';
 import Header from '../components/HeaderPage';
 import Post from '../components/Post';
 import FormPost from '../components/FormPost';
+import FriendsList from '../components/FriendsList';
 import '../css/newsFeed.css';
 
 function NewsFeed(props) {
@@ -42,7 +43,7 @@ function NewsFeed(props) {
             
           </div> 
           <div className="col-md-3 border">
-            List of friends
+            <FriendsList />
           </div>  
         </div>
       </div>
