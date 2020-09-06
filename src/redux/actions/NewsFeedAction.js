@@ -28,9 +28,8 @@ export const getListPost = data => async dispatch => {
 
   serviceCall(
     {
-      url: '/newsfeed',
-      method: 'POST',
-      body: JSON.stringify(data)
+      url: `/postlist/friends/${data.userId}/${data.pagination}`,
+      method: 'GET'
     },
     dispatch,
     getPostsSuccessfull,
@@ -60,10 +59,11 @@ export const createPost = data => async dispatch => {
   })
 
   const formData = new FormData();
+  formData.append("files", data.file);
 
-  formData.append("file", data.file);
-  formData.append("comment", data.comment);
-  formData.append("userId", data.userId);
+  /*for(const name in data) {
+    formData.append(name, data[name]);
+  }*/
 
   console.log("Formdata:", data);
 
@@ -80,3 +80,28 @@ export const createPost = data => async dispatch => {
   )
 };
 /* Create the post */
+
+/* Add or Remove a like from a post */
+export const addRemovelikePostSuccessfull = response => {
+  return {type: ''}
+};
+
+export const addRemovelikePostFailure = error => {
+  return {type: ''}
+};
+
+export const addRemovelikePost = data => async dispatch => {
+
+  serviceCall(
+    {
+      url: `/newsfeed/reaction?userId=${data.userId}&nwId=${data.nwId}`,
+      method: 'POST'
+    },
+    dispatch,
+    addRemovelikePostSuccessfull,
+    addRemovelikePostFailure
+  );
+}
+
+
+/* Add or Remove a like from a post */

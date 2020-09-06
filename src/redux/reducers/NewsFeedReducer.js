@@ -1,8 +1,9 @@
 import { GET_POSTS_SUCCESSFULL,
          GET_POSTS_FAILURE,
-         GET_POSTS_LOADER } from '../types/NewsFeedTypes';
+         GET_POSTS_LOADER} from '../types/NewsFeedTypes';
 
 const INITIAL_STATE = {
+  listPost: [],
   loader: false,
   error: []
 };
@@ -12,6 +13,7 @@ export default(state = INITIAL_STATE, action) => {
     case GET_POSTS_SUCCESSFULL:
       return {
         ...state,
+        listPost: action.payload,
         loader: false,
         error: []
       }
@@ -21,12 +23,13 @@ export default(state = INITIAL_STATE, action) => {
         ...state,
         loader: false,
         error: action.payload
-      }  
+      }    
 
     case GET_POSTS_LOADER:
       return {
         ...state,
-        loader: true
+        loader: true,
+        error: []
       }  
 
     default: return state;  

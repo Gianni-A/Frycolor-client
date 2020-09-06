@@ -1,4 +1,4 @@
-import React, { useState, useCallback} from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Header from '../components/HeaderPage';
 import Post from '../components/Post';
 import FormPost from '../components/FormPost';
@@ -18,6 +18,34 @@ function NewsFeed(props) {
 
     props.createPost(dataForm);
   });
+
+  useEffect(() => {
+    const data = {
+      userId: 1,
+      pagination: 10
+    };
+
+    props.getListPost(data);
+  }, []);
+
+  function addOrRemoveLike(postId) {
+    const data = {
+      userId: 1,
+      nwId: postId
+    }
+    props.addRemoveLikePost(data);
+  }
+
+  const {listPost, reactionPost, loader, error} = props;
+
+  if(Object.keys(listPost).length > 0) {
+    //call the component to
+    //console.log(listPost);
+  }
+
+  if(Object.keys(error).length > 0) {
+    alert('There is an error');
+  }
   
   return(
     <section>
@@ -33,13 +61,19 @@ function NewsFeed(props) {
               setComment={setCommentPost}
               setPath={setPathImagePost}
             />
-            <Post  
-              comment="Esto es solo un comentario"
-              url="../../src/assets/images/test.jpg"
-              value_likes="10"
-              value_comments="5"
-              list_comments="array"
-            />
+            {listPost.map((post, index) => (
+              <Post  
+                key={index}
+                postId={post.nwId}
+                comment={post.comment}
+                url="../../src/assets/images/test.jpg"
+                valueLikes={post.contReactions}
+                valueComments={post.listResponses.length}
+                listResponses={post.listResponses}
+                addOrRemoveLike={addOrRemoveLike}
+                userLike={post.userLike}
+              />
+            ))}
             
           </div> 
           <div className="col-md-3 border">
