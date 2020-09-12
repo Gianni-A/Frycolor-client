@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CommentPost from '../components/CommentPost';
+import FormResponse from '../components/FormResponse';
 import '../css/post.css';
 
 function Post(props) {
@@ -25,6 +26,16 @@ function Post(props) {
     }   
     
     props.addOrRemoveLike(props.postId);
+  }
+
+  function addComment(comment) {
+    const data = {
+      usId: 1,
+      nwComOriginId: props.postId,
+      comment: comment
+    };
+
+    props.saveResponsePost(data);
   }
 
   return(
@@ -55,6 +66,9 @@ function Post(props) {
               value_likes={response.contReactions}
             />
           ))} 
+          <FormResponse 
+            addComment={addComment}
+          />
         </div>
       </div>
   )

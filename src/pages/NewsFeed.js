@@ -36,6 +36,10 @@ function NewsFeed(props) {
     props.addRemoveLikePost(data);
   }
 
+  function saveResponsePost(data) {
+    props.saveResponsePost(data);
+  }
+
   const {listPost, reactionPost, loader, error} = props;
 
   if(Object.keys(listPost).length > 0) {
@@ -72,6 +76,7 @@ function NewsFeed(props) {
                 listResponses={post.listResponses}
                 addOrRemoveLike={addOrRemoveLike}
                 userLike={post.userLike}
+                saveResponsePost={saveResponsePost}
               />
             ))}
             

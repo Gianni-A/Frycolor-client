@@ -2,6 +2,8 @@ import { GET_POSTS_SUCCESSFULL,
   GET_POSTS_FAILURE,
   CREATE_POST_SUCCESSFULL,
   CREATE_POST_FAILURE,
+  SAVE_RESPONSE_POST_SUCCESSFULL,
+  SAVE_RESPONSE_POST_FAILURE,
   GET_POSTS_LOADER } from '../types/NewsFeedTypes';
 
 import { serviceCall } from '../../util/Utils';
@@ -105,3 +107,39 @@ export const addRemovelikePost = data => async dispatch => {
 
 
 /* Add or Remove a like from a post */
+
+/* Add a comment of a Post */
+
+export const saveResponsePostSucessfull = response => {
+  return {
+    type: SAVE_RESPONSE_POST_SUCCESSFULL,
+    payload: response
+  };
+};
+
+export const saveResponsePostFailure = error => {
+  return {
+    type: SAVE_RESPONSE_POST_FAILURE,
+    payload: error
+  };
+};
+//export const addRemovelikePost = data => async dispatch => {
+export const saveResponsePost = data => async dispatch => {
+  /*dispatch({
+    type: LOADER_RESPONSE_POST
+  })*/
+
+  serviceCall(
+    {
+      url: '/newsresponse',
+      method: 'POST',
+      body: JSON.stringify(data)
+    },
+    dispatch,
+    saveResponsePostSucessfull,
+    saveResponsePostFailure
+  );
+}
+
+/* Add a comment of a Post */
+
