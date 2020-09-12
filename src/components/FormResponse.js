@@ -19,7 +19,7 @@ function FormResponse(props) {
           <textarea className="form-control" rows="2" value={commentRes} onChange={(e) => setCommentRes(e.target.value)}></textarea>
         </div>
         <div className="col-md-2">
-          <button onClick={sendComment}>Send</button>
+          <button className="btn btn-primary" onClick={sendComment}>Send</button>
         </div>
       </div>
     </div>

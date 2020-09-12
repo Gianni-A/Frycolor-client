@@ -4,8 +4,7 @@ import { saveInformation } from '../redux/actions/ProfileFormAction';
 
 const mapStateToProps = state => {
   const {userInfoUpdated, loader, error} = state.profileFormReducer;
-  /*const { user_information } = state.profileReducer;
-  console.log(user_information);*/
+  /*const { user_information } = state.profileReducer;*/
   return {
     userInfoUpdated,
     loader,

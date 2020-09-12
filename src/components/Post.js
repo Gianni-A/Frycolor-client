@@ -38,6 +38,10 @@ function Post(props) {
     props.saveResponsePost(data);
   }
 
+  function likeAnimationCom(nwResId) {
+    props.addOrRemoveLikeCom(nwResId);
+  }
+
   return(
       <div className="card card_container">    
         <div className="card-body">
@@ -61,9 +65,12 @@ function Post(props) {
           {props.listResponses.map((response, index) => (
             <CommentPost
               key={index} 
+              nwResId={response.nwResId}
               user={response.nameUser}
               comment={response.comment}
               value_likes={response.contReactions}
+              likeAnimationCom={likeAnimationCom}
+              userLike={response.userLike}
             />
           ))} 
           <FormResponse 

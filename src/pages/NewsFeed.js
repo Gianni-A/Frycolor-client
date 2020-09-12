@@ -40,11 +40,18 @@ function NewsFeed(props) {
     props.saveResponsePost(data);
   }
 
-  const {listPost, reactionPost, loader, error} = props;
+  function addOrRemoveLikeCom(nwResId) {
+    const data = {
+      userId: 1,
+      nwResId
+    }
+    props.addRemoveLikeCom(data);
+  }
+
+  const {listPost, loader, error} = props;
 
   if(Object.keys(listPost).length > 0) {
     //call the component to
-    //console.log(listPost);
   }
 
   if(Object.keys(error).length > 0) {
@@ -77,6 +84,7 @@ function NewsFeed(props) {
                 addOrRemoveLike={addOrRemoveLike}
                 userLike={post.userLike}
                 saveResponsePost={saveResponsePost}
+                addOrRemoveLikeCom={addOrRemoveLikeCom}
               />
             ))}
             

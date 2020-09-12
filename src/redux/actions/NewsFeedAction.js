@@ -103,7 +103,7 @@ export const addRemovelikePost = data => async dispatch => {
     addRemovelikePostSuccessfull,
     addRemovelikePostFailure
   );
-}
+};
 
 
 /* Add or Remove a like from a post */
@@ -143,3 +143,27 @@ export const saveResponsePost = data => async dispatch => {
 
 /* Add a comment of a Post */
 
+/* Add reaction to a response of a post */
+
+export const addRemovelikeComSuccessfull = response => {
+  return {type: ''}
+};
+
+export const addRemovelikeComFailure = error => {
+  return {type: ''}
+};
+
+export const addRemovelikeCom = data => async dispatch => {
+
+  serviceCall(
+    {
+      url: `/newsresponse/reaction?userId=${data.userId}&nwResId=${data.nwResId}`,
+      method: 'POST'
+    },
+    dispatch,
+    addRemovelikePostSuccessfull,
+    addRemovelikePostFailure
+  );
+};
+
+/* Add reaction to a response of a post */
