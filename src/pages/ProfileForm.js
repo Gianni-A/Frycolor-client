@@ -18,12 +18,19 @@ class ProfileForm extends Component {
       usInfCity: 'Guadalajara',
       usInfTsCreated: '2020-06-12 15:12:45'
     };
+    
 
     //Need to bind these function to use this.setState on the Component
     this.handleChange = this.handleChange.bind(this);
     this.handleCountryChange = this.handleCountryChange.bind(this);
     this.handleStateChange = this.handleStateChange.bind(this);
     this.handleCityChange = this.handleCityChange.bind(this);
+  }
+
+  async componentDidMount() {
+    await this.props.getUserInformation(1);
+
+    
   }
 
   handleChange(event){
@@ -60,10 +67,15 @@ class ProfileForm extends Component {
     }
   }
 
+  setPathImage(pathImage) {
+    const image = pathImage.split("\\");
+    this.setState({usInfPath_image: image[2]});
+  }
+
 
   render() {
 
-    const { userInfoUpdated, loader, error } = this.props;
+    const { userInfo, userInfoUpdated, loader, error } = this.props;
 
     //Listed countries
     const listedCountries = listCountries.map(country => 
@@ -82,6 +94,7 @@ class ProfileForm extends Component {
       <option value={obj.value} key={obj.value}>{obj.label}</option>
     );
 
+
     //Message when the update is success
     if(Object.keys(userInfoUpdated).length > 0) {
       alert("User Updated");
@@ -97,11 +110,25 @@ class ProfileForm extends Component {
       <Fragment>
         <HeaderPage />
         <div className="container">
-          <div className="row">
-            <div className="col-md-4">
+          <div className="row mt-4">
+            <div className="col-md-6">
+              <div className="row">
+                <div className="col-md-12">
+                  <img src="../../src/assets/images/test.jpg" alt="image friend" className="form_image_profile"/>
+                </div>
+                <div className="col-md-11 mt-3">
+                  <div className="custom-file">
+                    <input type="file" className="custom-file-input" id="customFile" onChange={(e) => this.setPathImage(e.target.value)} />
+                    <label className="custom-file-label" htmlFor="customFile">{this.state.usInfPath_image}</label>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div className="col-md-6">
               <form>
                 <div className="form-group">
-                  <input type="text" className="form-control" name='usInfName' id="usInfName" placeholder="Name" onChange={(e) => this.handleChange(e)} />
+                <input type="text" className="form-control" name='usInfName' id="usInfName" placeholder="Name" onChange={(e) => this.handleChange(e)} />
                 </div>
                 <div className="form-group">
                   <input type="text" className="form-control" name='usInfLastname' id="usInfLastname" placeholder="Last Name" onChange={(e) => this.handleChange(e)} />

@@ -49,6 +49,7 @@ function NewsFeed(props) {
   }
 
   const {listPost, loader, error} = props;
+  console.log(JSON.stringify(listPost));
 
   if(Object.keys(listPost).length > 0) {
     //call the component to
@@ -75,6 +76,7 @@ function NewsFeed(props) {
             {listPost.map((post, index) => (
               <Post  
                 key={index}
+                nameUser={post.nameUser}
                 postId={post.nwId}
                 comment={post.comment}
                 url="../../src/assets/images/test.jpg"

@@ -28,10 +28,10 @@ class Profile extends Component {
         <div className="container">
           <form>
             <div className="row">
-              <div className="col-md-3 border">
+              <div className="col-md-3 border-left">
                 <img src="../../src/assets/images/test.jpg"  className="profile_image"/>
               </div>
-              <div className="col-md-3 border">
+              <div className="col-md-3">
                 <div className="row">
                   <p>Nombre completo:</p>
                   <p>Carlos montreal</p>
@@ -41,24 +41,29 @@ class Profile extends Component {
                   <p>25 anos</p>
                 </div>
               </div>
-              <div className="col-md-3 border">
+              <div className="col-md-3">
                 <div className="row">
-                    <button type="button" className="btn btn-primary btn-ls float-right">
-                      <a href="/editProfile">Edit</a>
-                    </button>
+                    <div className="col-md-9">
+                      <div className="row">
+                        <p>Pais:</p>
+                        <p>Mexico</p>
+                      </div>
+                      <div className="row">
+                        <p>Estado:</p>
+                        <p>Jalisco</p>
+                      </div>
+                      <div className="row">
+                        <p>Ciudad:</p>
+                        <p>Guadalajara</p>
+                      </div>
+                    </div> 
+                    <div className="col-md-3">
+                      <button type="button" className="btn btn-primary">
+                        <a href="/editProfile" className="text-white">Edit</a>
+                      </button>
+                    </div>
                 </div>
-                <div className="row">
-                  <p>Pais:</p>
-                  <p>Mexico</p>
-                </div>
-                <div className="row">
-                  <p>Estado:</p>
-                  <p>Jalisco</p>
-                </div>
-                <div className="row">
-                  <p>Ciudad:</p>
-                  <p>Guadalajara</p>
-                </div>
+                
               </div>
               <div className="col-md-3 border">
                 <FriendsList />

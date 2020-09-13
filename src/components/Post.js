@@ -45,7 +45,14 @@ function Post(props) {
   return(
       <div className="card card_container">    
         <div className="card-body">
-          <p className="card-text">{props.comment}</p>
+          <div className="row">
+            <img src="../../src/assets/images/test.jpg" alt="image friend" className="profile_friend"/>
+            <a href="#" className="mt-2">{props.nameUser}</a>
+          </div>
+          <div className={props.comment != "" ? 'row mt-3' : 'row'}>
+           <p className="card-text">{props.comment}</p>
+          </div>
+          
         </div>
         <img className="card-img-top post_image" src={props.url} alt="Card image cap"></img>
         <div>
