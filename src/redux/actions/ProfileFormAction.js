@@ -1,7 +1,7 @@
 import { SAVE_INFORMATION_SUCCESS,
 				 SAVE_INFORMATION_FAILURE,
-				 GET_USER_INFORMATION_SUCCESS,
-				 GET_USER_INFORMATION_FAILURE,
+				 SAVE_IMAGE_PROFILE_SUCCESS,
+				 SAVE_IMAGE_PROFILE_FAILURE,
 				 LOADING_PROFILE_FORM } from '../types/ProfileFormTypes';
 
 import { serviceCall } from '../../util/Utils';	
@@ -13,14 +13,14 @@ export const saveInformationSuccess = response => {
 		type: SAVE_INFORMATION_SUCCESS,
 		payload: response
 	}
-}
+};
 
 export const saveInformationFailure = error => {
   return {
     type: SAVE_INFORMATION_FAILURE,
     payload: error
   }
-}
+};
 
 export const saveInformation = userInfo => async dispatch => {
 
@@ -42,34 +42,43 @@ export const saveInformation = userInfo => async dispatch => {
 
 	/* Save user information */
 
-	/* Get user information */
+	/* Save image profile */
 
-	export const getUserInformationSuccess = response => {
+	export const saveImageProfileSuccess = response => {
 		return {
-			type: GET_USER_INFORMATION_SUCCESS,
+			type: SAVE_IMAGE_PROFILE_SUCCESS,
 			payload: response
 		}
-	}
+	};
 	
-	export const getUserInformationFailure = error => {
+	export const saveImageProfileFailure = error => {
 		return {
-			type: GET_USER_INFORMATION_FAILURE,
+			type: SAVE_IMAGE_PROFILE_FAILURE,
 			payload: error
 		}
-	}
-
-	export const getUserInformation = userId => async dispatch => {
-
-		serviceCall(
-			{
-				url: `/profile/${userId}`,
-				method: 'GET'
-			},
-			dispatch,
-			getUserInformationSuccess,
-			getUserInformationFailure
-		);
-
 	};
 
-	/* Get user information */
+	export const saveImageProfile = (image, userInfId) => async dispatch => {
+
+		dispatch({
+			type: LOADING_PROFILE_FORM
+		})
+
+		const formData = new FormData();
+		formData.append("file", image);
+		formData.append("userInfId", userInfId);
+	
+		serviceCall(
+			{
+				url: '/profile/media',
+				method: 'POST',
+				body: formData
+			},
+			dispatch,
+			saveImageProfileSuccess,
+			saveImageProfileFailure,
+			false
+		);
+	}
+
+	/* Save image profile */

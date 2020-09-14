@@ -20,7 +20,7 @@ function App() {
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/signup" component={SignupContainer} />
         <Route exact path="/profile" component={ProfileContainer} />
-        <Route exact path="/editProfile" component={ProfileFormContainer} />
+        <Route exact path="/editProfile/:userId" component={ProfileFormContainer} />
         <Route exact path="/forgotPassword" component={ForgotPasswordContainer} />
         <Route exact path="/restorePassword/:userId" component={RestorePasswordContainer} />
         <Route exact path="/changePassword" component={ChangePasswordContainer} />

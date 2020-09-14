@@ -1,11 +1,12 @@
 import { SAVE_INFORMATION_SUCCESS,
          SAVE_INFORMATION_FAILURE,
-         GET_USER_INFORMATION_SUCCESS,
-         GET_USER_INFORMATION_FAILURE,
+         SAVE_IMAGE_PROFILE_SUCCESS,
+         SAVE_IMAGE_PROFILE_FAILURE,
          LOADING_PROFILE_FORM } from '../types/ProfileFormTypes';
 
   const INITIAL_STATE = {
     userInfo: {},
+    imageProfile: {},
     userInfoUpdated: {},
     loader: false,
     error: []
@@ -27,17 +28,17 @@ import { SAVE_INFORMATION_SUCCESS,
           loader: false
         }
 
-      case GET_USER_INFORMATION_SUCCESS:
+      case SAVE_IMAGE_PROFILE_SUCCESS:
         return {
           ...state,
-          userInfo: action.payload,
+          imageProfile: action.payload,
+          error: [],
           loader: false
-        }
-
-      case GET_USER_INFORMATION_FAILURE:
+        } 
+        
+      case SAVE_IMAGE_PROFILE_FAILURE:
         return {
           ...state,
-          userInfo: {},
           error: action.payload,
           loader: false
         }  

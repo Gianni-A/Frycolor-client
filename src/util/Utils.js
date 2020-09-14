@@ -1,3 +1,5 @@
+import { SERVER } from '../util/GlobalVariables';
+
 export const serviceCall = (config, dispatch, callSuccess, callFailure, contentTypeJson = true) => {
   let header;
   if(contentTypeJson) {
@@ -10,7 +12,7 @@ export const serviceCall = (config, dispatch, callSuccess, callFailure, contentT
     header = { Accept: 'application/json' }
   }
 
-  fetch(`http://localhost:8090${config.url}`, {
+  fetch(`${SERVER}${config.url}`, {
     ...config,
     mode: 'cors',
     headers: header
