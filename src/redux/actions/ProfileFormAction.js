@@ -59,8 +59,7 @@ export const saveInformation = userInfo => async dispatch => {
 	}
 
 	export const getUserInformation = userId => async dispatch => {
-	
-		//console.log("Info: ", userId);
+
 		serviceCall(
 			{
 				url: `/profile/${userId}`,

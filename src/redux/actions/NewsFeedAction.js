@@ -61,13 +61,11 @@ export const createPost = data => async dispatch => {
   })
 
   const formData = new FormData();
-  formData.append("files", data.file);
+  formData.append("file", data.file);
+  formData.append("userId", data.userId);
+  formData.append("comment", data.comment);
 
-  /*for(const name in data) {
-    formData.append(name, data[name]);
-  }*/
-
-  console.log("Formdata:", data);
+  //console.log(data);
 
   serviceCall(
     {

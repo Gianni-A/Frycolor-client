@@ -12,8 +12,8 @@ function NewsFeed(props) {
 
     const dataForm = {
       file: pathImagePost,
-      comment: commentPost,
-      userId: 7
+      comment: commentPost != undefined ? commentPost : '',
+      userId: 1
     };
 
     props.createPost(dataForm);
@@ -49,7 +49,6 @@ function NewsFeed(props) {
   }
 
   const {listPost, loader, error} = props;
-  console.log(JSON.stringify(listPost));
 
   if(Object.keys(listPost).length > 0) {
     //call the component to
