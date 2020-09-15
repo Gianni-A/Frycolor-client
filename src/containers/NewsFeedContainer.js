@@ -3,12 +3,13 @@ import NewsFeed from '../pages/NewsFeed';
 import { getListPost, createPost, addRemovelikePost, saveResponsePost, addRemovelikeCom } from '../redux/actions/NewsFeedAction';
 
 const mapStateToProps = state => {
-  const { listPost, responsePost, loader, error } = state.newsFeedReducer;
+  const { listPost, responsePost, loader, error, cleanForm } = state.newsFeedReducer;
   return {
     listPost,
     responsePost,
     loader,
-    error
+    error,
+    cleanForm
   }
 };
 

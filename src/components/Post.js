@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CommentPost from '../components/CommentPost';
 import FormResponse from '../components/FormResponse';
+import { URL_MEDIA_POST, URL_MEDIA_PROFILES } from '../util/GlobalVariables';
 import '../css/post.css';
 
 function Post(props) {
@@ -46,15 +47,17 @@ function Post(props) {
       <div className="card card_container">    
         <div className="card-body">
           <div className="row">
-            <img src="../../src/assets/images/test.jpg" alt="image friend" className="profile_friend"/>
-            <a href="#" className="mt-2">{props.nameUser}</a>
+            <img src={`${URL_MEDIA_PROFILES}${props.imageUser}`} alt="image friend" className="profile_friend"/>
+            <a href="profile" className="mt-2">{props.nameUser}</a>
           </div>
           <div className={props.comment != "" ? 'row mt-3' : 'row'}>
            <p className="card-text">{props.comment}</p>
           </div>
           
         </div>
-        <img className="card-img-top post_image" src={props.url} alt="Card image cap"></img>
+        {props.image &&
+          <img className="card-img-top post_image" src={`${URL_MEDIA_POST}${props.image}`} alt="Card image cap"></img>
+        }
         <div>
           <div className="col-md-3 float-left text-left ml-3 mt-2">
             <div className={statusLike ? 'heart is-active' : 'heart'} onClick={likeAnimation}></div>

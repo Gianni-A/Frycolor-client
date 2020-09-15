@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Header from '../components/HeaderPage';
 import Post from '../components/Post';
 import FormPost from '../components/FormPost';
@@ -6,18 +6,16 @@ import FriendsList from '../components/FriendsList';
 import '../css/newsFeed.css';
 
 function NewsFeed(props) {
-  const [commentPost, setCommentPost] = useState();
-  const [pathImagePost, setPathImagePost] = useState();
-  const handleCreatePost = useCallback(() => {
+  function handleCreatePost(file, comment) {
 
     const dataForm = {
-      file: pathImagePost,
-      comment: commentPost != undefined ? commentPost : '',
+      file: file != undefined ? file : '',
+      comment: comment != undefined ? comment : '',
       userId: 1
     };
 
     props.createPost(dataForm);
-  });
+  }
 
   useEffect(() => {
     const data = {
@@ -48,10 +46,17 @@ function NewsFeed(props) {
     props.addRemoveLikeCom(data);
   }
 
-  const {listPost, loader, error} = props;
+  const {listPost, loader, error, cleanForm} = props;
+
+  //Clean form from publishing a Post (FormPost)
+  if(cleanForm) {
+    document.getElementById("comment-input-post").value = "";
+    document.getElementById("file-input").value = "";
+  }
 
   if(Object.keys(listPost).length > 0) {
     //call the component to
+    //console.log("cleanForm: ", cleanForm);
   }
 
   if(Object.keys(error).length > 0) {
@@ -69,16 +74,15 @@ function NewsFeed(props) {
           <div className="col-md-6 border">
             <FormPost 
               createPost={handleCreatePost}
-              setComment={setCommentPost}
-              setPath={setPathImagePost}
             />
             {listPost.map((post, index) => (
               <Post  
                 key={index}
+                imageUser={post.imageProfile}
                 nameUser={post.nameUser}
                 postId={post.nwId}
                 comment={post.comment}
-                url="../../src/assets/images/test.jpg"
+                image={post.image}
                 valueLikes={post.contReactions}
                 valueComments={post.listResponses.length}
                 listResponses={post.listResponses}

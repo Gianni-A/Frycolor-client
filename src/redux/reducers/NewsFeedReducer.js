@@ -10,7 +10,8 @@ const INITIAL_STATE = {
   listPost: [],
   responsePost: {},
   loader: false,
-  error: []
+  error: [],
+  cleanForm: false
 };
 
 export default(state = INITIAL_STATE, action) => {
@@ -23,18 +24,19 @@ export default(state = INITIAL_STATE, action) => {
         ...state,
         listPost: payload,
         loader: false,
-        error: []
+        error: [],
+        cleanForm: false
       }
 
     case GET_POSTS_FAILURE:
       return {
         ...state,
         loader: false,
-        error: payload
+        error: payload,
+        cleanForm: false
       }  
       
     case CREATE_POST_SUCCESSFULL:
-      console.log(payload);
       let user = payload.usId.usInfId;
       const commentPost = payload.usCommentId != null ? payload.usCommentId.usComComment : '';
       const image = payload.usMdId != null ? payload.usMdId.usMdPath : '';
@@ -42,6 +44,7 @@ export default(state = INITIAL_STATE, action) => {
         nwId: payload.nwId,
         comment: commentPost,
         image: image,
+        imageProfile: user.usInfPath_image,
         nameUser: `${user.usInfName} ${user.usInfLastname}`,
         contReactions: 0,
         userLike: false,
@@ -54,14 +57,16 @@ export default(state = INITIAL_STATE, action) => {
         ...state,
         listPost,
         error: [],
-        loader: false
+        loader: false,
+        cleanForm: commentPost != "" ? true : false
       } 
       
     case CREATE_POST_FAILURE:
       return {
         ...state,
         error: payload,
-        loader: false
+        loader: false,
+        cleanForm: false
       }  
       
     case SAVE_RESPONSE_POST_SUCCESSFULL:
@@ -82,7 +87,8 @@ export default(state = INITIAL_STATE, action) => {
         ...state,
         responsePost: payload,
         loader: false,
-        error: []
+        error: [],
+        cleanForm: true
       }
 
     case SAVE_RESPONSE_POST_FAILURE:
@@ -90,14 +96,16 @@ export default(state = INITIAL_STATE, action) => {
         ...state,
         responsePost: {},
         loader: false,
-        error: payload
+        error: payload,
+        cleanForm: false
       }    
 
     case GET_POSTS_LOADER:
       return {
         ...state,
         loader: true,
-        error: []
+        error: [],
+        cleanForm: false
       }  
 
     default: return state;  

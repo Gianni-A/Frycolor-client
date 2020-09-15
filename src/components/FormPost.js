@@ -1,10 +1,14 @@
 import React from 'react';
 
-function FormPost({createPost, setComment, setPath}) {
-  function setFile() {
+function FormPost({createPost}) {
+
+  function sendData() {
     const inputFile = document.getElementById("file-input");
-    setPath(inputFile.files[0]);
+    const inputComment = document.getElementById("comment-input-post");
+
+    createPost(inputFile.files[0], inputComment.value);
   }
+  
   return(
     <div className="form_post_container">
       <form>
@@ -12,14 +16,14 @@ function FormPost({createPost, setComment, setPath}) {
           <label htmlFor="file-input">
             <img src="../../src/assets/components/gallery.png"/>
           </label>
-          <input id="file-input" onChange={() => setFile()} type="file" />
+          <input id="file-input" type="file" />
         </div>
         <div className="form-group">
-        <label htmlFor="example">What are you feeling now?</label>
-        <textarea className="form-control" id="comment-input-post" onChange={(e)=> setComment(e.target.value)} rows="3"></textarea>
+          <label htmlFor="example">What are you feeling now?</label>
+          <textarea className="form-control" id="comment-input-post" rows="3"></textarea>
         </div>
       </form>
-      <button className="btn btn-primary btn-block" onClick={() => createPost()}>Post</button>
+      <button className="btn btn-primary btn-block" onClick={() => sendData()}>Post</button>
     </div>
   )
 }

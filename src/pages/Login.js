@@ -13,7 +13,6 @@ function Login(props) {
       username,
       password
     };
-    console.log(credentials);
 
     //props.loginAction(credentials);
   });

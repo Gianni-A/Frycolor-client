@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ProfileForm from '../pages/ProfileForm';
-import { saveInformation, getUserInformation, saveImageProfile } from '../redux/actions/ProfileFormAction';
+import { saveInformation, saveImageProfile } from '../redux/actions/ProfileFormAction';
 
 const mapStateToProps = state => {
   const {userInfo, imageProfile, userInfoUpdated, loader, error} = state.profileFormReducer;
@@ -16,7 +16,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     saveInformation: userInfo => dispatch(saveInformation(userInfo)),
-    getUserInformation: userId => dispatch(getUserInformation(userId)),
     saveImageProfile: (image, userInfId) => dispatch(saveImageProfile(image, userInfId))
   }
 };

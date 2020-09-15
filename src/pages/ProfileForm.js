@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import HeaderPage from '../components/HeaderPage';
 import Loader from '../components/Loader';
-import { SERVER } from '../util/GlobalVariables';
+import { SERVER, URL_MEDIA_PROFILES } from '../util/GlobalVariables';
 
 import { listCountries, listStates, listCities } from '../util/FormOptions';
 
@@ -39,7 +39,8 @@ class ProfileForm extends Component {
         usInfBirthday: data.usInfBirthday != null ? data.usInfBirthday : '',
         usInfCountry: data.usInfCountry != null ? data.usInfCountry : 'Mexico',
         usInfState: data.usInfState != null ? data.usInfState : 'Jalisco',
-        usInfCity: data.usInfCity != null ? data.usInfCity : 'Guadalajara'
+        usInfCity: data.usInfCity != null ? data.usInfCity : 'Guadalajara',
+        usInfPath_image: data.usInfPath_image != null ? data.usInfPath_image : ''
       });
     }); 
   }
@@ -89,7 +90,7 @@ class ProfileForm extends Component {
   render() {
 
     const { imageProfile, userInfoUpdated, loader, error } = this.props;
-    console.log(imageProfile);
+    
 
     //Listed countries
     const listedCountries = listCountries.map(country => 
@@ -108,6 +109,10 @@ class ProfileForm extends Component {
       <option value={obj.value} key={obj.value}>{obj.label}</option>
     );
 
+    let componentImage = <img src={`${URL_MEDIA_PROFILES}${this.state.usInfPath_image}`} alt="image friend" className="form_image_profile"/>;
+    if(Object.keys(imageProfile).length > 0) {
+      componentImage = <img src={`${URL_MEDIA_PROFILES}${imageProfile.usInfPath_image}`} alt="image friend" className="form_image_profile"/>;
+    }
 
     //Message when the update is success
     if(Object.keys(userInfoUpdated).length > 0) {
@@ -128,7 +133,7 @@ class ProfileForm extends Component {
             <div className="col-md-6">
               <div className="row">
                 <div className="col-md-12">
-                  <img src="../../src/assets/images/test.jpg" alt="image friend" className="form_image_profile"/>
+                  {componentImage}
                 </div>
                 <div className="col-md-11 mt-3">
                   <div className="custom-file">
