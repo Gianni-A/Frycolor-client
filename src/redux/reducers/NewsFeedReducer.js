@@ -6,8 +6,12 @@ import { GET_POSTS_SUCCESSFULL,
          SAVE_RESPONSE_POST_FAILURE,
          GET_POSTS_LOADER} from '../types/NewsFeedTypes';
 
+import { GET_LIST_FRIENDS_SUCCESSFULL,
+         GET_LIST_FRIENDS_FAILURE } from '../types/ProfileTypes';        
+
 const INITIAL_STATE = {
   listPost: [],
+  listFriends: [],
   responsePost: {},
   loader: false,
   error: [],
@@ -98,7 +102,20 @@ export default(state = INITIAL_STATE, action) => {
         loader: false,
         error: payload,
         cleanForm: false
-      }    
+      }   
+      
+    case GET_LIST_FRIENDS_SUCCESSFULL:
+      return {
+        ...state,
+        listFriends: payload,
+        error: []
+      }  
+
+    case GET_LIST_FRIENDS_FAILURE:
+      return {
+        ...state,
+        error: payload
+      }  
 
     case GET_POSTS_LOADER:
       return {

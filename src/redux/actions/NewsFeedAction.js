@@ -65,8 +65,6 @@ export const createPost = data => async dispatch => {
   formData.append("userId", data.userId);
   formData.append("comment", data.comment);
 
-  //console.log(data);
-
   serviceCall(
     {
       url: '/newsfeed/newpost',

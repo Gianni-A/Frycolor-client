@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
 import NewsFeed from '../pages/NewsFeed';
 import { getListPost, createPost, addRemovelikePost, saveResponsePost, addRemovelikeCom } from '../redux/actions/NewsFeedAction';
+import { getListFriends } from '../redux/actions/ProfileAction';
 
 const mapStateToProps = state => {
-  const { listPost, responsePost, loader, error, cleanForm } = state.newsFeedReducer;
+  const { listPost, listFriends, responsePost, loader, error, cleanForm } = state.newsFeedReducer;
   return {
     listPost,
+    listFriends,
     responsePost,
     loader,
     error,
@@ -19,7 +21,8 @@ const mapDispatchToProps = dispatch => {
     createPost: dataForm => dispatch(createPost(dataForm)),
     addRemoveLikePost: data => dispatch(addRemovelikePost(data)),
     saveResponsePost: data => dispatch(saveResponsePost(data)),
-    addRemoveLikeCom: data => dispatch(addRemovelikeCom(data))
+    addRemoveLikeCom: data => dispatch(addRemovelikeCom(data)),
+    getListFriends: userId => dispatch(getListFriends(userId))
   }
 };
 

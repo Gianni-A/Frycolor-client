@@ -1,5 +1,7 @@
 import {GET_USER_INFORMATION_SUCCESS, 
-        GET_USER_INFORMATION_FAILURE} from '../types/ProfileTypes';
+				GET_USER_INFORMATION_FAILURE,
+			  GET_LIST_FRIENDS_SUCCESSFULL,
+  			GET_LIST_FRIENDS_FAILURE} from '../types/ProfileTypes';
 				
 import { serviceCall } from '../../util/Utils';			
 
@@ -29,3 +31,34 @@ export const getUserInformation = (userId) => async (dispatch) => {
 		getUserInformationFailure
 	);
 };        
+
+/* Get list friends of the user which is logged */
+
+export const getListFriendsSuccessfull = response => {
+  return {
+    type: GET_LIST_FRIENDS_SUCCESSFULL,
+    payload: response
+  }
+};
+
+export const getListFriendsFailure = error => {
+  return {
+    type: GET_LIST_FRIENDS_FAILURE,
+    payload: error
+  }
+};
+
+export const getListFriends = userId => dispatch => {
+
+  serviceCall(
+    {
+      url: `/profile/${userId}/friends`,
+      method: 'GET'
+    },
+    dispatch,
+    getListFriendsSuccessfull,
+    getListFriendsFailure
+  );
+};
+
+/* Get list friends of the user which is logged */

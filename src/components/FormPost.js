@@ -3,10 +3,16 @@ import React from 'react';
 function FormPost({createPost}) {
 
   function sendData() {
-    const inputFile = document.getElementById("file-input");
-    const inputComment = document.getElementById("comment-input-post");
+    const inputFile = document.getElementById("file-input").files[0];
+    const inputComment = document.getElementById("comment-input-post").value;
 
-    createPost(inputFile.files[0], inputComment.value);
+    const dataForm = {
+      file: inputFile != undefined ? inputFile : '',
+      comment: inputComment != undefined ? inputComment : '',
+      userId: 1
+    };
+
+    createPost(dataForm);
   }
   
   return(

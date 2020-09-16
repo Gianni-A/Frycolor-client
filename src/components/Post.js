@@ -24,9 +24,14 @@ function Post(props) {
     } else {
       setStatusLike(true);
       setCountReactions(countReactions + 1);
-    }   
+    } 
     
-    props.addOrRemoveLike(props.postId);
+    const data = {
+      userId: 1,
+      nwId: props.postId
+    }
+    
+    props.addOrRemoveLike(data);
   }
 
   function addComment(comment) {
@@ -40,7 +45,11 @@ function Post(props) {
   }
 
   function likeAnimationCom(nwResId) {
-    props.addOrRemoveLikeCom(nwResId);
+    const data = {
+      userId: 1,
+      nwResId
+    }
+    props.addOrRemoveLikeCom(data);
   }
 
   return(
