@@ -1,6 +1,8 @@
 import {GET_USER_INFORMATION_SUCCESS, 
 				GET_USER_INFORMATION_FAILURE,
-			  GET_LIST_FRIENDS_SUCCESSFULL,
+				GET_LIST_FRIENDS_SUCCESSFULL,
+				GET_LIST_PHOTOS_SUCCESSFULL,
+				GET_LIST_PHOTOS_FAILURE,
   			GET_LIST_FRIENDS_FAILURE} from '../types/ProfileTypes';
 				
 import { serviceCall } from '../../util/Utils';			
@@ -58,6 +60,37 @@ export const getListFriends = userId => dispatch => {
     dispatch,
     getListFriendsSuccessfull,
     getListFriendsFailure
+  );
+};
+
+/* Get list friends of the user which is logged */
+
+/* Get list friends of the user which is logged */
+
+export const getListPhotosSuccessfull = response => {
+  return {
+    type: GET_LIST_PHOTOS_SUCCESSFULL,
+    payload: response
+  }
+};
+
+export const getListPhotosFailure = error => {
+  return {
+    type: GET_LIST_PHOTOS_FAILURE,
+    payload: error
+  }
+};
+
+export const getListPhotos = userId => dispatch => {
+
+  serviceCall(
+    {
+      url: `/postlist/images/${userId}/10`,
+      method: 'GET'
+    },
+    dispatch,
+    getListPhotosSuccessfull,
+    getListPhotosFailure
   );
 };
 

@@ -13,6 +13,11 @@
   margin: auto;
   width: 100%;;
   padding: 10px;
+  overflow: hidden;
+}
+
+.user-photo {
+  float: left;
 }
 
 
@@ -29,4 +34,12 @@
 .form_image_profile {
   width: 70%;
   height: 80%;
+}
+
+.error-photos {
+  text-align: center;
+  font-size: 20px;
+  color: grey;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }

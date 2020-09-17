@@ -22,7 +22,7 @@ class Profile extends Component {
   }
 
   render() {
-    const {user_information, error} = this.props;
+    const {user_information, getListFriends, listFriends, getListPhotos, listPhotos, error} = this.props;
     const age = calculateAge(user_information.usInfBirthday);
     const profileData = <form>
     <div className="row">
@@ -59,8 +59,8 @@ class Profile extends Component {
       </div>
       <div className="col-md-3 border">
         <FriendsList
-          getListFriends={this.props.getListFriends}
-          listFriends={this.props.listFriends}
+          getListFriends={getListFriends}
+          listFriends={listFriends}
         />
       </div>
     </div>
@@ -73,7 +73,10 @@ class Profile extends Component {
           {profileData}
           <div className="row">
             <div className="col-md-12 border">
-              <UserPhotos />
+              <UserPhotos 
+                getListPhotos={getListPhotos}
+                listPhotos={listPhotos}
+              />
             </div>
           </div>
         </div>

@@ -2,11 +2,12 @@ import {GET_USER_INFORMATION_SUCCESS,
         GET_USER_INFORMATION_FAILURE, 
         GET_LIST_FRIENDS_SUCCESSFULL,
         GET_LIST_FRIENDS_FAILURE, 
-        LOADING_PROFILE} from '../types/ProfileTypes';
+        LOADING_PROFILE, GET_LIST_PHOTOS_SUCCESSFULL} from '../types/ProfileTypes';
 
 const INITIAL_STATE = {
   user_information: {},
   listFriends: [],
+  listPhotos: [],
   loader: false,
   error: ''
 };
@@ -39,7 +40,20 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: action.payload
-      }    
+      }
+      
+    case GET_LIST_PHOTOS_SUCCESSFULL:
+      return {
+        ...state,
+        listPhotos: action.payload,
+        error: []
+      }
+      
+    case GET_LIST_FRIENDS_FAILURE:
+      return {
+        ...state,
+        error: []
+      }  
     
     case LOADING_PROFILE:
       return {
