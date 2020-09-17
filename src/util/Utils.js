@@ -1,4 +1,5 @@
 import { SERVER } from '../util/GlobalVariables';
+import moment from 'moment';
 
 export const serviceCall = (config, dispatch, callSuccess, callFailure, contentTypeJson = true) => {
   let header;
@@ -35,4 +36,9 @@ export const serviceCall = (config, dispatch, callSuccess, callFailure, contentT
       });
     }
   })
+};
+
+export const calculateAge = birthday => {
+  const stringYear = moment(birthday, "YYYYMMDD").fromNow();
+  return stringYear.replace('ago','');
 };
