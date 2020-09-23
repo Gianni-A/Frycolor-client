@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import CommentPost from '../components/CommentPost';
 import FormResponse from '../components/FormResponse';
 import { URL_MEDIA_POST, URL_MEDIA_PROFILES } from '../util/GlobalVariables';
+import { getUserInformationStore } from '../util/Utils';
 import '../css/post.css';
 
 function Post(props) {
   const[statusSection, setStatusSection] = useState(false);
   const[statusLike, setStatusLike] = useState(props.userLike);
   const[countReactions, setCountReactions] = useState(props.valueLikes);
+
+  const userInformation = getUserInformationStore();
 
   function showHideSectionComments() {
     if(statusSection) {
@@ -27,7 +30,7 @@ function Post(props) {
     } 
     
     const data = {
-      userId: 1,
+      userId: userInformation.usId,
       nwId: props.postId
     }
     
@@ -36,7 +39,7 @@ function Post(props) {
 
   function addComment(comment) {
     const data = {
-      usId: 1,
+      usId: userInformation.usId,
       nwComOriginId: props.postId,
       comment: comment
     };
@@ -46,7 +49,7 @@ function Post(props) {
 
   function likeAnimationCom(nwResId) {
     const data = {
-      userId: 1,
+      userId: userInformation.usId,
       nwResId
     }
     props.addOrRemoveLikeCom(data);

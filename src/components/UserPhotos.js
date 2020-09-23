@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { URL_MEDIA_POST } from '../util/GlobalVariables';
+import { getUserInformationStore } from '../util/Utils';
 
 function UserPhotos({getListPhotos, listPhotos}) {
+  const userInformation = getUserInformationStore();
   useEffect(() => {
     //Needs userId
-    getListPhotos(1);
+    getListPhotos(userInformation.usId);
   }, []);
 
   if(listPhotos.length == 0) {

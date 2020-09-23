@@ -14,12 +14,16 @@ function Login(props) {
       password
     };
 
-    //props.loginAction(credentials);
+    props.loginAction(credentials);
   });
 
-  const { credentials, loader, error } = props;
-  if(Object.keys(credentials).length > 0) {
+  const { userInformation, loader, error } = props;
+
+  //console.log("data: ", userInformation);
+  if(Object.keys(userInformation).length > 0) {
     //Redirect to the main page and set the login to cookie, Also save the response for future usages
+    localStorage.setItem('userInformation', JSON.stringify(userInformation));
+    window.location.href = "/newsFeed";
   }
 
   if(Object.keys(error).length > 0) {

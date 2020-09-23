@@ -2,24 +2,15 @@ import React, { Component, Fragment } from 'react';
 import HeaderPage from '../components/HeaderPage';
 import Loader from '../components/Loader';
 import { SERVER, URL_MEDIA_PROFILES } from '../util/GlobalVariables';
+import { getUserInformationStore } from '../util/Utils';
 
 import { listCountries, listStates, listCities } from '../util/FormOptions';
 
 class ProfileForm extends Component {
   constructor(props) {
+    const userInformation = getUserInformationStore();
     super(props);
-    this.state = {
-      usInfId: 1,
-      usInfName: '',
-      usInfLastname: '',
-      usInfBirthday: '',
-      usInfPath_image: '',
-      usInfCountry: 'Mexico',
-      usInfState: 'Jalisco',
-      usInfCity: 'Guadalajara',
-      usInfTsCreated: '2020-06-12 15:12:45'
-    };
-    
+    this.state = userInformation.usInfId;
 
     //Need to bind these function to use this.setState on the Component
     this.handleChange = this.handleChange.bind(this);

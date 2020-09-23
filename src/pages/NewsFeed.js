@@ -3,12 +3,14 @@ import Header from '../components/HeaderPage';
 import Post from '../components/Post';
 import FormPost from '../components/FormPost';
 import FriendsList from '../components/FriendsList';
+import { getUserInformationStore } from '../util/Utils';
 import '../css/newsFeed.css';
 
 function NewsFeed(props) {
   useEffect(() => {
+    const userInformation = getUserInformationStore();
     const data = {
-      userId: 1,
+      userId: userInformation.usId,
       pagination: 10
     };
 

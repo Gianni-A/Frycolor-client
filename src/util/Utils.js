@@ -3,20 +3,31 @@ import moment from 'moment';
 
 export const serviceCall = (config, dispatch, callSuccess, callFailure, contentTypeJson = true) => {
   let header;
+  const token = localStorage.getItem('token');
+  //console.log("token", token);
   if(contentTypeJson) {
     header = {
       'Content-type': 'application/json',
-      Accept: 'application/json'
-    }
+      Accept: 'application/json'}
   }
   else {
     header = { Accept: 'application/json' }
   }
 
+  header['Access-Control-Allow-Origin'] = '*';
+
+  //Needs to find a better solution
+  //Needs to do this condition in order to avoid setting authorization to the login endpoint
+  const url = config.url.split("/");
+  const loginWord = url[2].split("?");
+  if(loginWord[0] != "login") {
+    header['Authorization'] = `Bearer ${token}`;
+  }
+
   fetch(`${SERVER}${config.url}`, {
     ...config,
     mode: 'cors',
-    headers: header
+    headers: new Headers(header)
   }).then(response => {
     const statusCode = response.status;
     let errorArray = Array();
@@ -42,3 +53,9 @@ export const calculateAge = birthday => {
   const stringYear = moment(birthday, "YYYYMMDD").fromNow();
   return stringYear.replace('ago','');
 };
+
+export const getUserInformationStore = () => {
+  const getUser = localStorage.getItem('userInformation');
+  const userInformation = JSON.parse(getUser);
+  return userInformation;
+}

@@ -1,6 +1,9 @@
 import React from 'react';
+import { getUserInformationStore } from '../util/Utils';
 
 function FormPost({createPost}) {
+
+  const userInformation = getUserInformationStore();
 
   function sendData() {
     const inputFile = document.getElementById("file-input").files[0];
@@ -9,7 +12,7 @@ function FormPost({createPost}) {
     const dataForm = {
       file: inputFile != undefined ? inputFile : '',
       comment: inputComment != undefined ? inputComment : '',
-      userId: 1
+      userId: userInformation.usId
     };
 
     createPost(dataForm);

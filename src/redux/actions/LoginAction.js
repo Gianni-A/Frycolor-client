@@ -2,7 +2,9 @@ import { LOGIN_SUCCESSFUL,
          LOGIN_FAILURE,
          LOGIN_LOADER } from '../types/LoginTypes';
 
-import { serviceCall } from '../../util/Utils';
+import { serviceCall, saveToken, getToken } from '../../util/Utils';
+
+import { SERVER } from '../../util/GlobalVariables';
 
 export const loginSuccessfull = response => {
   return {
@@ -25,12 +27,27 @@ export const loginAction = data => async dispatch => {
 
   serviceCall(
     {
-      url: '/login',
-      method: 'POST',
-      body: JSON.stringify(data)
+      url: `/session/login?username=${data.username}&password=${data.password}`,
+      method: 'POST'
     },
     dispatch,
     loginSuccessfull,
     loginFailure
   );
+
+  //Getting token to authenticate into the endpoints
+  const credentials = {
+    username: "FrycolorUser",
+    password: "frysyscolor"
+  };
+  const header = {
+    'Content-type': 'application/json',
+    Accept: 'application/json'
+  }
+  const dataParsed = JSON.stringify(credentials);
+
+  const response = await fetch(`${SERVER}/authenticate`, {mode: 'cors', headers: header, method: 'POST',  body: dataParsed});
+  response.json().then(data => {
+    localStorage.setItem('token', data.jwt);
+  });
 }

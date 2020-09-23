@@ -1,9 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import HeaderPage from '../components/HeaderPage';
 import Loader from '../components/Loader';
+import { getUserInformationStore } from '../util/Utils';
 
 function ChangePassword(props) {
-  const [userId, setUserId] = useState(7);
+  const userInformation = getUserInformationStore();
+  const [userId, setUserId] = useState(userInformation.usId);
   const [actualPassword, setActualPassword] = useState();
   const [newPassword, setNewPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();

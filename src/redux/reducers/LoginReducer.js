@@ -3,7 +3,7 @@ import { LOGIN_SUCCESSFUL,
          LOGIN_LOADER } from '../types/LoginTypes';
 
 const INITIAL_STATE = {
-  credentials: {},
+  userInformation: {},
   loader: false,
   error: []
 };
@@ -13,7 +13,7 @@ export default(state = INITIAL_STATE, action) => {
     case LOGIN_SUCCESSFUL:
       return {
         ...state,
-        credentials: action.payload,
+        userInformation: action.payload,
         loader: false,
         error: []
       }
@@ -21,7 +21,7 @@ export default(state = INITIAL_STATE, action) => {
     case LOGIN_FAILURE:
       return {
         ...state,
-        credentials: {},
+        userInformation: {},
         loader: false,
         error: action.payload
       }

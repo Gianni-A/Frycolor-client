@@ -3,9 +3,9 @@ import Login from '../pages/Login';
 import { loginAction } from '../redux/actions/LoginAction';
 
 const mapStateToProps = state => {
-  const { credentials, loader, error } = state.loginReducer;
+  const { userInformation, loader, error } = state.loginReducer;
   return {
-    credentials,
+    userInformation,
     loader,
     error
   }

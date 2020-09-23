@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HeaderPage from '../components/HeaderPage';
 import { URL_MEDIA_PROFILES } from '../util/GlobalVariables';
-import { calculateAge } from '../util/Utils';
+import { calculateAge, getUserInformationStore } from '../util/Utils';
 import '../css/profile.css';
 
 import FriendsList from '../components/FriendsList';
@@ -18,7 +18,8 @@ class Profile extends Component {
   }
 
   async getUserInformation() {
-    await this.props.getUserInformation(1);
+    const userInformation = getUserInformationStore();
+    await this.props.getUserInformation(userInformation.usInfId.usInfId);
   }
 
   render() {
@@ -52,7 +53,7 @@ class Profile extends Component {
             </div> 
             <div className="col-md-3">
               <button type="button" className="btn btn-primary">
-                <a href="/editProfile" className="text-white">Edit</a>
+                <a href={`/editProfile/${user_information.usInfId}`} className="text-white">Edit</a>
               </button>
             </div>
         </div>
