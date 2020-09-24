@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import Profile from '../pages/Profile';
-import { getUserInformation, getListFriends, getListPhotos } from '../redux/actions/ProfileAction';
+import { getUserInformation, getListFriends, getListPhotos, addFriend, deleteFriend } from '../redux/actions/ProfileAction';
 
 const mapStateToProps = state => {
-  const {user_information, listFriends, listPhotos, loader, error} = state.profileReducer;
+  const {user_information, isFriend, listFriends, listPhotos, loader, error} = state.profileReducer;
   return {
     user_information,
+    isFriend,
     listFriends,
     listPhotos,
     loader,
@@ -15,9 +16,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUserInformation: userId => dispatch(getUserInformation(userId)),
+    getUserInformation: (userId, userLogged) => dispatch(getUserInformation(userId,userLogged)),
     getListFriends: userId => dispatch(getListFriends(userId)),
-    getListPhotos: userId => dispatch(getListPhotos(userId))
+    getListPhotos: userId => dispatch(getListPhotos(userId)),
+    addFriend: (userLogged, userId) => dispatch(addFriend(userLogged, userId)),
+    deleteFriend: (userLogged, userId) => dispatch(deleteFriend(userLogged, userId))
   }
 };
 

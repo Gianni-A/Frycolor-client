@@ -18,7 +18,7 @@ function HeaderPage() {
         </div>
         <div className="col-md-6 border text-right">
           <button onClick={logOff}>Log out</button>
-          <a href="/profile">{`${usInfName} ${usInfLastname}`}</a>
+          <a href={`/profile/${userInformation.usId}`}>{`${usInfName} ${usInfLastname}`}</a>
         </div>
       </div>
     </div>

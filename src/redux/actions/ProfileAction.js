@@ -1,9 +1,13 @@
 import {GET_USER_INFORMATION_SUCCESS, 
 				GET_USER_INFORMATION_FAILURE,
-				GET_LIST_FRIENDS_SUCCESSFULL,
+        GET_LIST_FRIENDS_SUCCESSFULL,
+        GET_LIST_FRIENDS_FAILURE,
 				GET_LIST_PHOTOS_SUCCESSFULL,
 				GET_LIST_PHOTOS_FAILURE,
-  			GET_LIST_FRIENDS_FAILURE} from '../types/ProfileTypes';
+        ADD_FRIEND_SUCCESSFULL,
+        ADD_FRIEND_FAILURE,
+        DELETE_FRIEND_SUCCESSFULL,
+        DELETE_FRIEND_FAILURE} from '../types/ProfileTypes';
 				
 import { serviceCall } from '../../util/Utils';			
 
@@ -21,11 +25,11 @@ export const getUserInformationFailure = error => {
 	}
 };
 
-export const getUserInformation = (userId) => async (dispatch) => {
+export const getUserInformation = (userId, userLogged) => async (dispatch) => {
 
 	serviceCall(
 		{
-			url: `/profile/${userId}`,
+			url: `/profile/${userId}/${userLogged}`,
 			method: 'GET'
 		},
 		dispatch,
@@ -95,3 +99,75 @@ export const getListPhotos = userId => dispatch => {
 };
 
 /* Get list friends of the user which is logged */
+
+/* Add friend */
+
+export const addFriendSuccessfull = response => {
+  return {
+    type: ADD_FRIEND_SUCCESSFULL
+  }
+};
+
+export const addFriendFailure = error => {
+  return {
+    type: ADD_FRIEND_FAILURE,
+    payload: error
+  }
+};
+
+export const addFriend = (userLogged, userId) => dispatch => {
+
+  let formData = new FormData();
+  formData.append("userId", userLogged);
+  formData.append("friendId", userId);
+
+  serviceCall(
+    {
+      url: '/profile/friends',
+      method: 'POST',
+      body: formData
+    },
+    dispatch,
+    addFriendSuccessfull,
+    addFriendFailure,
+    false
+  );
+};
+
+/* Add friend */
+
+/* Delete friend */
+
+export const deleteFriendSuccessfull = response => {
+  return {
+    type: DELETE_FRIEND_SUCCESSFULL,
+  }
+};
+
+export const deleteFriendFailure = error => {
+  return {
+    type: DELETE_FRIEND_FAILURE,
+    payload: error
+  }
+};
+
+export const deleteFriend = (userLogged, userId) => dispatch => {
+
+  let formData = new FormData();
+  formData.append("userId", userLogged);
+  formData.append("friendId", userId);
+
+  serviceCall(
+    {
+      url: '/profile/friends/delete',
+      method: 'POST',
+      body: formData
+    },
+    dispatch,
+    deleteFriendSuccessfull,
+    deleteFriendFailure,
+    false
+  );
+};
+
+/* Delete friend */

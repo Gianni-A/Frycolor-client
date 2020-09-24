@@ -10,7 +10,8 @@ class ProfileForm extends Component {
   constructor(props) {
     const userInformation = getUserInformationStore();
     super(props);
-    this.state = userInformation.usInfId;
+    this.state = userInformation;
+    
 
     //Need to bind these function to use this.setState on the Component
     this.handleChange = this.handleChange.bind(this);
@@ -20,18 +21,23 @@ class ProfileForm extends Component {
   }
 
   async componentDidMount() {
-    let response = await fetch(`${SERVER}/profile/${this.props.match.params.userId}`);
+    const token = localStorage.getItem('token');
+    const header = { 'Authorization': `Bearer ${token}` }
+    let response = await fetch(`${SERVER}/profile/${this.props.match.params.userId}/${this.props.match.params.userId}`, {headers: new Headers(header)});
 
     response.json().then(data => {
+      const {userInformation} = data;
+      console.log("data:", userInformation)
+      
       this.setState({
-        usInfId: data.usInfId,
-        usInfName: data.usInfName,
-        usInfLastname: data.usInfLastname != null ? data.usInfLastname : '',
-        usInfBirthday: data.usInfBirthday != null ? data.usInfBirthday : '',
-        usInfCountry: data.usInfCountry != null ? data.usInfCountry : 'Mexico',
-        usInfState: data.usInfState != null ? data.usInfState : 'Jalisco',
-        usInfCity: data.usInfCity != null ? data.usInfCity : 'Guadalajara',
-        usInfPath_image: data.usInfPath_image != null ? data.usInfPath_image : ''
+        usInfId: userInformation.usInfId,
+        usInfName: userInformation.usInfName,
+        usInfLastname: userInformation.usInfLastname != '' ? userInformation.usInfLastname : '',
+        usInfBirthday: userInformation.usInfBirthday != '' ? userInformation.usInfBirthday : '',
+        usInfCountry: userInformation.usInfCountry != null ? userInformation.usInfCountry : 'Mexico',
+        usInfState: userInformation.usInfState != null ? userInformation.usInfState : 'Jalisco',
+        usInfCity: userInformation.usInfCity != null ? userInformation.usInfCity : 'Guadalajara',
+        usInfPath_image: userInformation.usInfPath_image != '' ? userInformation.usInfPath_image : ''
       });
     }); 
   }
@@ -102,6 +108,7 @@ class ProfileForm extends Component {
 
     let componentImage = <img src={`${URL_MEDIA_PROFILES}${this.state.usInfPath_image}`} alt="image friend" className="form_image_profile"/>;
     if(Object.keys(imageProfile).length > 0) {
+      console.log("entro");
       componentImage = <img src={`${URL_MEDIA_PROFILES}${imageProfile.usInfPath_image}`} alt="image friend" className="form_image_profile"/>;
     }
 

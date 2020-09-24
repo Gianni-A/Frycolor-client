@@ -18,13 +18,31 @@ class Profile extends Component {
   }
 
   async getUserInformation() {
-    const userInformation = getUserInformationStore();
-    await this.props.getUserInformation(userInformation.usInfId.usInfId);
+    const userStore = getUserInformationStore();
+    await this.props.getUserInformation(this.props.match.params.userId, userStore.usId);
   }
 
   render() {
-    const {user_information, getListFriends, listFriends, getListPhotos, listPhotos, error} = this.props;
+    const {user_information, isFriend, getListFriends, listFriends, getListPhotos, listPhotos, addFriend, deleteFriend, error} = this.props;
+    const userIdParam = this.props.match.params.userId;
+    const userStore = getUserInformationStore();
     const age = calculateAge(user_information.usInfBirthday);
+
+    //Shows and Hide button friend
+    let buttonFriend;
+    if(isFriend) {
+      buttonFriend = 
+        <button type="button" className="btn btn-info" onClick={() => deleteFriend(userStore.usId, userIdParam)}>
+          Delete friend
+        </button>;
+    }
+    else {
+      buttonFriend = 
+        <button type="button" className="btn btn-info" onClick={() => addFriend(userStore.usId, userIdParam)}>
+          Add friend
+        </button>;
+    }
+    
     const profileData = <form>
     <div className="row">
       <div className="col-md-3 border-left">
@@ -52,10 +70,20 @@ class Profile extends Component {
               </div>
             </div> 
             <div className="col-md-3">
+              {userStore.usId == userIdParam && 
               <button type="button" className="btn btn-primary">
                 <a href={`/editProfile/${user_information.usInfId}`} className="text-white">Edit</a>
               </button>
+              }
             </div>
+        </div>
+        <div className="row">
+          {userStore.usId != userIdParam && 
+            <div className="col-md-8">
+              {buttonFriend}
+            </div>
+          }
+          
         </div>
       </div>
       <div className="col-md-3 border">
@@ -75,6 +103,7 @@ class Profile extends Component {
           <div className="row">
             <div className="col-md-12 border">
               <UserPhotos 
+                usInfId={user_information.usInfId}
                 getListPhotos={getListPhotos}
                 listPhotos={listPhotos}
               />

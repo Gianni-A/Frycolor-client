@@ -28,10 +28,6 @@ function NewsFeed(props) {
   if(Object.keys(listPost).length > 0) {
     //Set a component where it says 'there is no records'
   }
-
-  if(Object.keys(error).length > 0) {
-    alert('There is an error');
-  }
   
   return(
     <section>
@@ -45,7 +41,7 @@ function NewsFeed(props) {
             <FormPost 
               createPost={props.createPost}
             />
-            {listPost.map((post, index) => (
+            {Object.keys(error).length <= 0 ? listPost.map((post, index) => (
               <Post  
                 key={index}
                 imageUser={post.imageProfile}
@@ -61,7 +57,7 @@ function NewsFeed(props) {
                 saveResponsePost={props.saveResponsePost}
                 addOrRemoveLikeCom={props.addRemoveLikeCom}
               />
-            ))}
+            )) : <p className="error_post_empty">{error}</p>}
           </div> 
           <div className="col-md-3 border">
             <FriendsList

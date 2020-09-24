@@ -19,8 +19,7 @@ export const serviceCall = (config, dispatch, callSuccess, callFailure, contentT
   //Needs to find a better solution
   //Needs to do this condition in order to avoid setting authorization to the login endpoint
   const url = config.url.split("/");
-  const loginWord = url[2].split("?");
-  if(loginWord[0] != "login") {
+  if(url[2] != "login") {
     header['Authorization'] = `Bearer ${token}`;
   }
 

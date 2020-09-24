@@ -15,4 +15,12 @@
   border: 1px solid rgb(224, 224, 224);
 }
 
+.error_post_empty {
+  font-size: 20px;
+  text-align: center;
+  color: rgb(165, 165, 165);
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 /*FormPost section*/
