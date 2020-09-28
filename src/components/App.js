@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { getUserInformationStore } from '../util/Utils';
 import Intro from '../pages/Intro';
 
 //Containers
@@ -13,13 +14,17 @@ import LoginContainer from '../containers/LoginContainer';
 import NewsFeedContainer from '../containers/NewsFeedContainer';
 
 function App() {
+  const user = getUserInformationStore();
+
   return(
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Intro} />
+        <Route exact path="/">
+          {user ? <Redirect to="/newsFeed" /> : <Intro />}
+        </Route>
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/signup" component={SignupContainer} />
-        <Route exact path="/profile" component={ProfileContainer} />
+        <Route exact path="/profile/:userId" component={ProfileContainer} />
         <Route exact path="/editProfile/:userId" component={ProfileFormContainer} />
         <Route exact path="/forgotPassword" component={ForgotPasswordContainer} />
         <Route exact path="/restorePassword/:userId" component={RestorePasswordContainer} />
