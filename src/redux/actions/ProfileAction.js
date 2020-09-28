@@ -159,8 +159,8 @@ export const deleteFriend = (userLogged, userId) => dispatch => {
 
   serviceCall(
     {
-      url: '/profile/friends/delete',
-      method: 'POST',
+      url: '/profile/friends',
+      method: 'DELETE',
       body: formData
     },
     dispatch,

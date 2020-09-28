@@ -13,8 +13,6 @@ export const serviceCall = (config, dispatch, callSuccess, callFailure, contentT
     header = { Accept: 'application/json' }
   }
 
-  header['Access-Control-Allow-Origin'] = '*';
-
   //Needs to find a better solution
   //Needs to do this condition in order to avoid setting authorization to the login endpoint
   const url = config.url.split("/");
