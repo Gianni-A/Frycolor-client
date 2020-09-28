@@ -4,7 +4,6 @@ import moment from 'moment';
 export const serviceCall = (config, dispatch, callSuccess, callFailure, contentTypeJson = true) => {
   let header;
   const token = localStorage.getItem('token');
-  //console.log("token", token);
   if(contentTypeJson) {
     header = {
       'Content-type': 'application/json',

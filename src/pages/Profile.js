@@ -103,7 +103,7 @@ class Profile extends Component {
           <div className="row">
             <div className="col-md-12 border">
               <UserPhotos 
-                usInfId={user_information.usInfId}
+                userId={user_information.usInfId}
                 getListPhotos={getListPhotos}
                 listPhotos={listPhotos}
               />

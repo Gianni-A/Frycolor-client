@@ -27,7 +27,6 @@ class ProfileForm extends Component {
 
     response.json().then(data => {
       const {userInformation} = data;
-      console.log("data:", userInformation)
       
       this.setState({
         usInfId: userInformation.usInfId,
@@ -108,7 +107,6 @@ class ProfileForm extends Component {
 
     let componentImage = <img src={`${URL_MEDIA_PROFILES}${this.state.usInfPath_image}`} alt="image friend" className="form_image_profile"/>;
     if(Object.keys(imageProfile).length > 0) {
-      console.log("entro");
       componentImage = <img src={`${URL_MEDIA_PROFILES}${imageProfile.usInfPath_image}`} alt="image friend" className="form_image_profile"/>;
     }
 

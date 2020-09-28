@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import { URL_MEDIA_POST } from '../util/GlobalVariables';
-import { getUserInformationStore } from '../util/Utils';
 
-function UserPhotos({getListPhotos, listPhotos}) {
-  const userInformation = getUserInformationStore();
+function UserPhotos({userId, getListPhotos, listPhotos}) {
+  
   useEffect(() => {
-    //Needs userId
-    getListPhotos(userInformation.usId);
-  }, []);
+    getListPhotos(userId);
+  }, [userId]);
 
   if(listPhotos.length == 0) {
     return <p className="error-photos">There is no photos here</p>
