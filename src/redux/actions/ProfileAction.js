@@ -123,7 +123,7 @@ export const addFriend = (userLogged, userId) => dispatch => {
 
   serviceCall(
     {
-      url: '/profile/friends',
+      url: '/profile/friends/request',
       method: 'POST',
       body: formData
     },

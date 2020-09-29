@@ -8,6 +8,7 @@ import restorePasswordReducer from './RestorePasswordReducer';
 import changePasswordReducer from './ChangePasswordReducer';
 import loginReducer from './LoginReducer';
 import newsFeedReducer from './NewsFeedReducer';
+import friendRequest from './FriendRequestReducer';
 
 export default combineReducers({
   signUpReducer,
@@ -17,5 +18,6 @@ export default combineReducers({
   restorePasswordReducer,
   changePasswordReducer,
   loginReducer,
-  newsFeedReducer
+  newsFeedReducer,
+  friendRequest
 });

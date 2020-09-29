@@ -12,6 +12,7 @@ import RestorePasswordContainer from '../containers/RestorePasswordContainer';
 import ChangePasswordContainer from '../containers/ChangePasswordContainer';
 import LoginContainer from '../containers/LoginContainer';
 import NewsFeedContainer from '../containers/NewsFeedContainer';
+import FriendRequestContainer from '../containers/FriendRequestContainer';
 
 function App() {
   const user = getUserInformationStore();
@@ -30,6 +31,7 @@ function App() {
         <Route exact path="/restorePassword/:userId" component={RestorePasswordContainer} />
         <Route exact path="/changePassword" component={ChangePasswordContainer} />
         <Route exact path="/newsFeed" component={NewsFeedContainer} />
+        <Route exact path="/friend/request" component={FriendRequestContainer} />
       </Switch>
     </BrowserRouter>
   )
