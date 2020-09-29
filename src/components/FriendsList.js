@@ -10,9 +10,9 @@ function FriendsList({getListFriends, listFriends}) {
   }, []);
   
   return(
-    <div>
+    <div className="list_friends">
       {listFriends.map((user, index) => (
-        <div key={index}>
+        <div className="row block_profile" key={index}>
           <img src={`${URL_MEDIA_PROFILES}${user.usInfPath_image}`} alt="image friend" className="profile_friend"/>
           <a href={`/profile/${user.usInfId}`} className="lbl_name_friend">{user.usInfName} {user.usInfLastname}</a>
         </div>

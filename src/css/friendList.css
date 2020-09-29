@@ -8,3 +8,12 @@
 .lbl_name_friend {
   margin-top: 7px;
 }
+
+.block_profile {
+  margin-top: 20px;
+  border-bottom: rgb(180, 180, 180);
+}
+
+.list_friends {
+  padding-left: 10px;
+}
