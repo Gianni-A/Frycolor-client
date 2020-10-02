@@ -22,25 +22,52 @@ class Profile extends Component {
     await this.props.getUserInformation(this.props.match.params.userId, userStore.usId);
   }
 
+  addRejectFriendRequest(friendTableId) {
+    const data = {
+      userFriendId: friendTableId,
+      action: 'APPROVE'
+    }
+
+    this.props.approveRejectRequest(data);
+  }
+
   render() {
-    const {user_information, isFriend, getListFriends, listFriends, getListPhotos, listPhotos, addFriend, deleteFriend, error} = this.props;
+    const {user_information, statusFriend, friendTableId, getListFriends, listFriends, getListPhotos, listPhotos, addFriend, deleteFriend, error} = this.props;
     const userIdParam = this.props.match.params.userId;
     const userStore = getUserInformationStore();
     const age = calculateAge(user_information.usInfBirthday);
-
+    
     //Shows and Hide button friend
     let buttonFriend;
-    if(isFriend) {
-      buttonFriend = 
+    switch(statusFriend) {
+      case 'ACTIVE':
+        buttonFriend = 
         <button type="button" className="btn btn-info" onClick={() => deleteFriend(userStore.usId, userIdParam)}>
           Delete friend
         </button>;
-    }
-    else {
-      buttonFriend = 
+        break;
+
+      case 'PEND':
+        buttonFriend = 
+        <button type="button" className="btn btn-info" onClick={() => deleteFriend(userStore.usId, userIdParam)}>
+          Cancel request
+        </button>;
+        break;
+
+      case 'UNKNOWN':
+        buttonFriend = 
         <button type="button" className="btn btn-info" onClick={() => addFriend(userStore.usId, userIdParam)}>
           Add friend
         </button>;
+        break;
+
+      case 'RESPONSE':
+        buttonFriend = 
+        <button type="button" className="btn btn-info" onClick={() => this.addRejectFriendRequest(friendTableId)}>
+          Approve request
+        </button>;
+        break;
+
     }
     
     const profileData = <form>
@@ -79,7 +106,7 @@ class Profile extends Component {
         </div>
         <div className="row">
           {userStore.usId != userIdParam && 
-            <div className="col-md-8">
+            <div className="col-md-10">
               {buttonFriend}
             </div>
           }

@@ -60,7 +60,7 @@ function Post(props) {
         <div className="card-body">
           <div className="row">
             <img src={`${URL_MEDIA_PROFILES}${props.imageUser}`} alt="image friend" className="profile_friend"/>
-            <a href="profile" className="mt-2">{props.nameUser}</a>
+            <a href={`profile/${props.userId}`} className="mt-2">{props.nameUser}</a>
           </div>
           <div className={props.comment != "" ? 'row mt-3' : 'row'}>
            <p className="card-text">{props.comment}</p>

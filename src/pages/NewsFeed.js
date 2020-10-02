@@ -4,6 +4,7 @@ import Post from '../components/Post';
 import FormPost from '../components/FormPost';
 import FriendsList from '../components/FriendsList';
 import { getUserInformationStore } from '../util/Utils';
+import Menu from '../components/Menu';
 import '../css/newsFeed.css';
 
 function NewsFeed(props) {
@@ -24,10 +25,6 @@ function NewsFeed(props) {
     document.getElementById("comment-input-post").value = "";
     document.getElementById("file-input").value = "";
   }
-
-  if(Object.keys(listPost).length > 0) {
-    //Set a component where it says 'there is no records'
-  }
   
   return(
     <section>
@@ -35,7 +32,7 @@ function NewsFeed(props) {
       <div className="container">
         <div className="row">
           <div className="col-md-3 border">
-            Menu with some options
+            <Menu />
           </div>
           <div className="col-md-6 border">
             <FormPost 
@@ -44,6 +41,7 @@ function NewsFeed(props) {
             {Object.keys(error).length <= 0 ? listPost.map((post, index) => (
               <Post  
                 key={index}
+                userId={post.userId}
                 imageUser={post.imageProfile}
                 nameUser={post.nameUser}
                 postId={post.nwId}
@@ -68,7 +66,6 @@ function NewsFeed(props) {
         </div>
       </div>
     </section>
-    
   )
 }
 

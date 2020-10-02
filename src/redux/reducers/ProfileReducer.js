@@ -9,9 +9,12 @@ import {GET_USER_INFORMATION_SUCCESS,
         DELETE_FRIEND_SUCCESSFULL,
         DELETE_FRIEND_FAILURE} from '../types/ProfileTypes';
 
+import { APPROVE_REJECT_FRIEND_REQUEST_SUCCESSFULL } from '../types/FriendRequestTypes';        
+
 const INITIAL_STATE = {
   user_information: {},
-  isFriend: false,
+  statusFriend: '',
+  friendTableId: 0,
   listFriends: [],
   listPhotos: [],
   loader: false,
@@ -22,11 +25,12 @@ export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
 
     case GET_USER_INFORMATION_SUCCESS: 
-    const { userInformation, friend } = action.payload;
+      const { userInformation, statusFriend, friendRequestId } = action.payload;
       return {
         ...state,
         user_information: userInformation,
-        isFriend: friend,
+        statusFriend: statusFriend,
+        friendTableId: friendRequestId,
         loader: false
       };
 
@@ -66,7 +70,7 @@ export default (state = INITIAL_STATE, action) => {
     case ADD_FRIEND_SUCCESSFULL:
       return {
         ...state,
-        isFriend: true,
+        statusFriend: 'PEND',
         loader: false,
         error: []
       }  
@@ -81,7 +85,7 @@ export default (state = INITIAL_STATE, action) => {
     case DELETE_FRIEND_SUCCESSFULL:
       return {
         ...state,
-        isFriend: false,
+        statusFriend: 'UNKNOWN',
         loader: false,
         error: []
       }  
@@ -91,6 +95,12 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         error: action.payload,
         loader: false
+      } 
+      
+    case APPROVE_REJECT_FRIEND_REQUEST_SUCCESSFULL:
+      return {
+        ...state,
+        statusFriend: 'ACTIVE'
       }  
     
     case LOADING_PROFILE:

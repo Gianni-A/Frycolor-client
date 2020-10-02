@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import FriendRequest from '../pages/FriendRequest';
-import { getListFriendRequest } from '../redux/actions/FriendRequestAction';
+import { getListFriendRequest, approveRejectRequest } from '../redux/actions/FriendRequestAction';
 
 const mapStateToProps = state => {
-  const { listFriendsRequest, loader, error } = state.friendRequest;
+  const { listFriendsRequest, actionTook, loader, error } = state.friendRequest;
   return {
     listFriendsRequest,
+    actionTook,
     loader,
     error
   }
@@ -13,7 +14,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getListFriendRequest: userIdLogged => dispatch(getListFriendRequest(userIdLogged))
+    getListFriendRequest: userIdLogged => dispatch(getListFriendRequest(userIdLogged)),
+    approveRejectRequest: data => dispatch(approveRejectRequest(data))
   }
 };
 
