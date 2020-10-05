@@ -42,14 +42,14 @@ class Profile extends Component {
     switch(statusFriend) {
       case 'ACTIVE':
         buttonFriend = 
-        <button type="button" className="btn btn-info" onClick={() => deleteFriend(userStore.usId, userIdParam)}>
+        <button type="button" className="btn btn-danger" onClick={() => deleteFriend(userStore.usId, userIdParam)}>
           Delete friend
         </button>;
         break;
 
       case 'PEND':
         buttonFriend = 
-        <button type="button" className="btn btn-info" onClick={() => deleteFriend(userStore.usId, userIdParam)}>
+        <button type="button" className="btn btn-secondary" onClick={() => deleteFriend(userStore.usId, userIdParam)}>
           Cancel request
         </button>;
         break;
@@ -63,7 +63,7 @@ class Profile extends Component {
 
       case 'RESPONSE':
         buttonFriend = 
-        <button type="button" className="btn btn-info" onClick={() => this.addRejectFriendRequest(friendTableId)}>
+        <button type="button" className="btn btn-success" onClick={() => this.addRejectFriendRequest(friendTableId)}>
           Approve request
         </button>;
         break;

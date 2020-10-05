@@ -55,7 +55,9 @@ export default(state = INITIAL_STATE, action) => {
         listResponses: []
       };
 
-      listPost.push(newPost);
+      //unshift = using this method we can add an element to the beginning of the array
+      //with this we can simulate it is added the last post to the array
+      listPost.unshift(newPost);
 
       return {
         ...state,
