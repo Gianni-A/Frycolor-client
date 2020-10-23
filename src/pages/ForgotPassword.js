@@ -20,6 +20,7 @@ class ForgotPassword extends Component {
     window.location = '../';
   }
 
+  //When there is an error, it sets error values as empty
   changeErrorValue() {
     this.props.changeErrorValue();
   }
