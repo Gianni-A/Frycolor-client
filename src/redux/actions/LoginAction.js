@@ -4,8 +4,6 @@ import { LOGIN_SUCCESSFUL,
 
 import { serviceCall } from '../../util/Utils';
 
-import { SERVER } from '../../util/GlobalVariables';
-
 export const loginSuccessfull = response => {
   return {
     type: LOGIN_SUCCESSFUL,
@@ -40,20 +38,4 @@ export const loginAction = data => async dispatch => {
     loginFailure,
     false
   );
-
-  //Getting token to authenticate into the endpoints
-  const credentials = {
-    username: "FrycolorUser",
-    password: "frysyscolor"
-  };
-  const header = {
-    'Content-type': 'application/json',
-    Accept: 'application/json'
-  }
-  const dataParsed = JSON.stringify(credentials);
-
-  const response = await fetch(`${SERVER}/authenticate`, {mode: 'cors', headers: header, method: 'POST',  body: dataParsed});
-  response.json().then(data => {
-    localStorage.setItem('token', data.jwt);
-  });
 }

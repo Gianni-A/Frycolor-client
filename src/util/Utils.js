@@ -1,9 +1,9 @@
 import { SERVER } from '../util/GlobalVariables';
 import moment from 'moment';
 
-export const serviceCall = (config, dispatch, callSuccess, callFailure, contentTypeJson = true) => {
+export const serviceCall = async (config, dispatch, callSuccess, callFailure, contentTypeJson = true) => {
   let header;
-  const token = localStorage.getItem('token');
+
   if(contentTypeJson) {
     header = {
       'Content-type': 'application/json',
@@ -17,6 +17,7 @@ export const serviceCall = (config, dispatch, callSuccess, callFailure, contentT
   //Needs to do this condition in order to avoid setting authorization to the login endpoint
   const url = config.url.split("/");
   if(url[2] != "login") {
+    const token = await getAuthenticationToken();
     header['Authorization'] = `Bearer ${token}`;
   }
 
@@ -54,4 +55,43 @@ export const getUserInformationStore = () => {
   const getUser = localStorage.getItem('userInformation');
   const userInformation = JSON.parse(getUser);
   return userInformation;
+}
+
+//NOTE: Need to calculate the time of the token in order to call it when this expires
+//Getting token to authenticate into the endpoints
+const getAuthenticationToken = async () => {
+
+  //Validate if the token expired then call to the endpoint to get new one
+  try {
+    const tokenData = JSON.parse( localStorage.getItem('token') );
+    const expireToken = moment(tokenData.date).add(12, 'h').toDate();
+
+    if(new Date() < expireToken) {
+      return tokenData.jwt;
+    }
+  } catch(err) {}
+  
+  const credentials = {
+    username: "FrycolorUser",
+    password: "frysyscolor"
+  };
+  const header = {
+    'Content-type': 'application/json',
+    Accept: 'application/json'
+  }
+  const dataParsed = JSON.stringify(credentials);
+
+  const response = await fetch(`${SERVER}/authenticate`, {mode: 'cors', headers: header, method: 'POST',  body: dataParsed});
+  
+  return response.json().then(data => {
+    const dataToken = {
+      jwt: data.jwt,
+      date: new Date().toLocaleString()
+    };
+
+    localStorage.setItem('token', JSON.stringify(dataToken)); 
+
+    return data.jwt;
+  });
+  
 }
