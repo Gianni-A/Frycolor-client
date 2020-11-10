@@ -59,7 +59,7 @@ export const getUserInformationStore = () => {
 
 //NOTE: Need to calculate the time of the token in order to call it when this expires
 //Getting token to authenticate into the endpoints
-const getAuthenticationToken = async () => {
+export const getAuthenticationToken = async () => {
 
   //Validate if the token expired then call to the endpoint to get new one
   try {

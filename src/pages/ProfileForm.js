@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import HeaderPage from '../components/HeaderPage';
 import Loader from '../components/Loader';
 import { SERVER, URL_MEDIA_PROFILES } from '../util/GlobalVariables';
-import { getUserInformationStore } from '../util/Utils';
+import { getUserInformationStore, getAuthenticationToken } from '../util/Utils';
 
 import { listCountries, listStates, listCities } from '../util/FormOptions';
 
@@ -21,7 +21,7 @@ class ProfileForm extends Component {
   }
 
   async componentDidMount() {
-    const token = localStorage.getItem('token');
+    const token = await getAuthenticationToken();
     const header = { 'Authorization': `Bearer ${token}` }
     let response = await fetch(`${SERVER}/profile/${this.props.match.params.userId}/${this.props.match.params.userId}`, {headers: new Headers(header)});
 
@@ -76,18 +76,14 @@ class ProfileForm extends Component {
   }
 
   setPathImage() {
-    //const image = pathImage.split("\\");
     const inputImage = document.getElementById("inputImageProfile");
-    //this.setState({usInfPath_image: inputImage.files[0]});
     this.props.saveImageProfile(inputImage.files[0], this.state.usInfId);
   }
 
 
   render() {
-
     const { imageProfile, userInfoUpdated, loader, error } = this.props;
     
-
     //Listed countries
     const listedCountries = listCountries.map(country => 
       <option value={country.value} key={country.value}>{country.label}</option>
