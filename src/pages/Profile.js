@@ -3,6 +3,7 @@ import HeaderPage from '../components/HeaderPage';
 import { URL_MEDIA_PROFILES } from '../util/GlobalVariables';
 import { calculateAge, getUserInformationStore } from '../util/Utils';
 import '../css/profile.css';
+import '../css/generalStyle.css';
 
 import FriendsList from '../components/FriendsList';
 import UserPhotos from '../components/UserPhotos';
@@ -71,7 +72,7 @@ class Profile extends Component {
     }
     
     const profileData = <form>
-    <div className="row">
+    <div className="row" style={{backgroundColor: "white"}}>
       <div className="col-md-3 border-left">
         <img src={`${URL_MEDIA_PROFILES}${user_information.usInfPath_image}`}  className="profile_image"/>
       </div>
@@ -123,11 +124,11 @@ class Profile extends Component {
   </form>;
 
     return(
-      <div>
+      <div className="main-page">
         <HeaderPage />
         <div className="container">
           {profileData}
-          <div className="row">
+          <div className="row" style={{backgroundColor: "white"}}>
             <div className="col-md-12 border">
               <UserPhotos 
                 userId={user_information.usInfId}

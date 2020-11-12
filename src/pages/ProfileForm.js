@@ -145,7 +145,7 @@ class ProfileForm extends Component {
                   <input type="text" className="form-control" name='usInfLastname' id="usInfLastname" value={this.state.usInfLastname} placeholder="Last Name" onChange={(e) => this.handleChange(e)} />
                 </div>
                 <div className="form-group">
-                  <input type="text" className="form-control" name='usInfBirthday' id="usInfBirthday" value={this.state.usInfBirthday} placeholder="Birthday" onChange={(e) => this.handleChange(e)} />
+                  <input type="date" className="form-control" name='usInfBirthday' id="usInfBirthday" value={this.state.usInfBirthday} placeholder="Birthday" onChange={(e) => this.handleChange(e)} />
                 </div>
                 
                 <div className="form-group">

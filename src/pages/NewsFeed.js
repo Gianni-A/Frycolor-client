@@ -6,6 +6,7 @@ import FriendsList from '../components/FriendsList';
 import { getUserInformationStore } from '../util/Utils';
 import Menu from '../components/Menu';
 import '../css/newsFeed.css';
+import '../css/generalStyle.css';
 
 function NewsFeed(props) {
   useEffect(() => {
@@ -27,11 +28,11 @@ function NewsFeed(props) {
   }
   
   return(
-    <section>
+    <section className="main-page">
       <Header />
       <div className="container">
         <div className="row">
-          <div className="col-md-3 border">
+          <div className="col-md-3 border menu-component">
             <Menu />
           </div>
           <div className="col-md-6 border">
@@ -54,10 +55,11 @@ function NewsFeed(props) {
                 userLike={post.userLike}
                 saveResponsePost={props.saveResponsePost}
                 addOrRemoveLikeCom={props.addRemoveLikeCom}
+                dateTime={post.dateTime}
               />
             )) : <p className="error_post_empty">{error}</p>}
           </div> 
-          <div className="col-md-3 border">
+          <div className="col-md-3 border friend-component">
             <FriendsList
               getListFriends={props.getListFriends}
               listFriends={listFriends}

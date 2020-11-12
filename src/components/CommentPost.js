@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { calculatePost } from '../util/Utils';
 
 function CommentPost(props) {
   const[statusLikeCom, setStatusLikeCom] = useState(props.userLike);
@@ -23,7 +24,7 @@ function CommentPost(props) {
         <div className="row">
           <div className="col-md-10">
             <div className="username_comment">
-              <a href="#">{props.user}</a>
+            <a href="#">{props.user}</a><span className="text-date-post"> - {calculatePost(props.dateTime)}</span>
             </div>
             <div className="text_comment">
               <p>{props.comment}</p>

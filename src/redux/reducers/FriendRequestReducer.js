@@ -4,8 +4,12 @@ import { GET_LIST_FRIEND_REQUEST_SUCCESSFULL,
          APPROVE_REJECT_FRIEND_REQUEST_FAILURE,
         LOADER_GET_LIST_FRIEND_REQUEST } from '../types/FriendRequestTypes';
 
+import { GET_LIST_FRIENDS_SUCCESSFULL,
+         GET_LIST_FRIENDS_FAILURE } from '../types/ProfileTypes';  
+
 const INITIAL_STATE = {
   listFriendsRequest: [],
+  listFriends: [],
   actionTook: '',
   loader: false,
   error: []
@@ -40,6 +44,19 @@ export default(state = INITIAL_STATE, action = '') => {
         ...state,
         actionTook: ''
       }  
+
+      case GET_LIST_FRIENDS_SUCCESSFULL:
+      return {
+        ...state,
+        listFriends: action.payload,
+        error: []
+      }
+      
+      case GET_LIST_FRIENDS_FAILURE:
+      return {
+        ...state,
+        error: payload
+      }
 
     case LOADER_GET_LIST_FRIEND_REQUEST:
       return {

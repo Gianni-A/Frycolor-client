@@ -3,6 +3,7 @@ import CommentPost from '../components/CommentPost';
 import FormResponse from '../components/FormResponse';
 import { URL_MEDIA_POST, URL_MEDIA_PROFILES } from '../util/GlobalVariables';
 import { getUserInformationStore } from '../util/Utils';
+import { calculatePost } from '../util/Utils';
 import '../css/post.css';
 
 function Post(props) {
@@ -59,8 +60,20 @@ function Post(props) {
       <div className="card card_container">    
         <div className="card-body">
           <div className="row">
-            <img src={`${URL_MEDIA_PROFILES}${props.imageUser}`} alt="image friend" className="profile_friend"/>
-            <a href={`profile/${props.userId}`} className="mt-2">{props.nameUser}</a>
+            <img src={`${URL_MEDIA_PROFILES}${props.imageUser}`} alt="image friend" className="post-image-profile"/>
+            <a href={`profile/${props.userId}`} className="mt-2">{props.nameUser}</a><span className="mt-2 ml-2 text-date-post"> - {calculatePost(props.dateTime)}</span>
+            
+            <div className="dropdown action-take-post">
+              <a  type="text" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+              </svg>
+              </a>
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a className="dropdown-item" href="#">Delete</a>
+              </div>
+            </div>
+
           </div>
           <div className={props.comment != "" ? 'row mt-3' : 'row'}>
            <p className="card-text">{props.comment}</p>
@@ -93,6 +106,7 @@ function Post(props) {
               value_likes={response.contReactions}
               likeAnimationCom={likeAnimationCom}
               userLike={response.userLike}
+              dateTime={response.dateTime}
             />
           ))} 
           <FormResponse 

@@ -1,6 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import HeaderPage from '../components/HeaderPage';
 import Loader from '../components/Loader';
+import Menu from '../components/Menu';
+import '../css/generalStyle.css';
+import '../css/changePassword.css';
 import { getUserInformationStore } from '../util/Utils';
 
 function ChangePassword(props) {
@@ -41,11 +44,14 @@ function ChangePassword(props) {
   }
 
   return(
-    <div>
+    <div className="main-page">
       <HeaderPage />
       <div className="container">
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-md-4 border menu-component">
+            <Menu />
+          </div>
+          <div className="col-md-4 changePassword-content">
             <form>
               <div className="form-group">
                 <input type="password" className="form-control" name='actualPassword' placeholder="Your actual password" onChange={(e) => setActualPassword(e.target.value)} />
