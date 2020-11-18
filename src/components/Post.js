@@ -57,9 +57,9 @@ function Post(props) {
     props.addOrRemoveLikeCom(data);
   }
 
-  function deleteOptionSelected(nwId) {
+  function deleteOptionSelected() {
     console.log(props.nwId)
-    props.openModal(props.nwId)
+    //props.openModal(props.nwId)
   }
 
   return(
@@ -76,7 +76,7 @@ function Post(props) {
               </svg>
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#" onClick={deleteOptionSelected(props.nwId)}>Delete</a>
+                <a className="dropdown-item" href="#" onClick={deleteOptionSelected()}>Delete</a>
               </div>
             </div>
             
@@ -103,18 +103,10 @@ function Post(props) {
           
         </div>
         <div className={statusSection ? 'section_comments' : 'section_comments_hide'}>
-          {props.listResponses.map((response, index) => (
-            <CommentPost
-              key={index} 
-              nwResId={response.nwResId}
-              user={response.nameUser}
-              comment={response.comment}
-              value_likes={response.contReactions}
-              likeAnimationCom={likeAnimationCom}
-              userLike={response.userLike}
-              dateTime={response.dateTime}
-            />
-          ))} 
+          <CommentPost
+            likeAnimationCom={likeAnimationCom}
+            listResponses={props.listResponses}
+          />
           <FormResponse 
             addComment={addComment}
           />
