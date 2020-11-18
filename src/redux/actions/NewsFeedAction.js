@@ -4,6 +4,8 @@ import { GET_POSTS_SUCCESSFULL,
   CREATE_POST_FAILURE,
   SAVE_RESPONSE_POST_SUCCESSFULL,
   SAVE_RESPONSE_POST_FAILURE,
+  DELETE_POST_SUCCESSFULL,
+  DELETE_POST_FAILURE,
   GET_POSTS_LOADER } from '../types/NewsFeedTypes';
 
 import { serviceCall } from '../../util/Utils';
@@ -163,3 +165,36 @@ export const addRemovelikeCom = data => async dispatch => {
 };
 
 /* Add reaction to a response of a post */
+
+/* Delete a post */
+
+export const deletePostSuccessfull = response => {
+  return {
+    type: DELETE_POST_SUCCESSFULL,
+    payload: response
+  }
+};
+
+export const deletePostFailure = error => {
+  return {
+    type: DELETE_POST_FAILURE,
+    payload: error
+  }
+};
+
+export const deletePost = nwId => async dispatch => {
+
+  console.log(nwId);
+
+  /*serviceCall(
+    {
+      url: `/newsfeed/${nwId}/delete`,
+      method: 'PATCH'
+    },
+    dispatch,
+    deletePostSuccessfull,
+    deletePostFailure
+  );*/
+};
+
+/* Delete a post */

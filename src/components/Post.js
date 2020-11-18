@@ -5,6 +5,7 @@ import { URL_MEDIA_POST, URL_MEDIA_PROFILES } from '../util/GlobalVariables';
 import { getUserInformationStore } from '../util/Utils';
 import { calculatePost } from '../util/Utils';
 import '../css/post.css';
+import $ from 'jquery';
 
 function Post(props) {
   const[statusSection, setStatusSection] = useState(false);
@@ -56,6 +57,11 @@ function Post(props) {
     props.addOrRemoveLikeCom(data);
   }
 
+  function deleteOptionSelected(nwId) {
+    console.log(props.nwId)
+    props.openModal(props.nwId)
+  }
+
   return(
       <div className="card card_container">    
         <div className="card-body">
@@ -70,10 +76,10 @@ function Post(props) {
               </svg>
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">Delete</a>
+                <a className="dropdown-item" href="#" onClick={deleteOptionSelected(props.nwId)}>Delete</a>
               </div>
             </div>
-
+            
           </div>
           <div className={props.comment != "" ? 'row mt-3' : 'row'}>
            <p className="card-text">{props.comment}</p>

@@ -1,14 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useState ,useEffect } from 'react';
 import Header from '../components/HeaderPage';
 import Post from '../components/Post';
 import FormPost from '../components/FormPost';
 import FriendsList from '../components/FriendsList';
+import Modal from '../components/Modal';
 import { getUserInformationStore } from '../util/Utils';
 import Menu from '../components/Menu';
 import '../css/newsFeed.css';
 import '../css/generalStyle.css';
+import $ from 'jquery';
 
 function NewsFeed(props) {
+
+  const[nwId, setNwId] = useState(0);
+
   useEffect(() => {
     const userInformation = getUserInformationStore();
     const data = {
@@ -18,6 +23,15 @@ function NewsFeed(props) {
 
     props.getListPost(data);
   }, []);
+
+  function deleteOptionSelected(nwId) {
+    console.log(nwId);
+    //$('#GeneralModal').modal('show')
+  }
+  
+  function deletePost() {
+
+  }
 
   const {listPost, listFriends, loader, error, cleanForm} = props;
 
@@ -56,6 +70,7 @@ function NewsFeed(props) {
                 saveResponsePost={props.saveResponsePost}
                 addOrRemoveLikeCom={props.addRemoveLikeCom}
                 dateTime={post.dateTime}
+                openModal={deleteOptionSelected}
               />
             )) : <p className="error_post_empty">{error}</p>}
           </div> 
@@ -66,6 +81,12 @@ function NewsFeed(props) {
             />
           </div>  
         </div>
+        <Modal 
+          title={'Delete a post'} 
+          acceptButton={() => deletePost()} 
+          cancelButton={() => $('#GeneralModal').modal('hide')}>
+            <p>Are you sure you want to delete the post selected?</p>
+        </Modal>
       </div>
     </section>
   )
