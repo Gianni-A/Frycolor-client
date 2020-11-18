@@ -94,7 +94,10 @@ class Signup extends Component {
               {loading && <Loader />}
             </div>
           </div>
-          <Modal title={'User created'} acceptButton={() => this.handleGoToMain()}>
+          <Modal 
+            title={'User created'} 
+            acceptButton={() => this.handleGoToMain()} 
+            cancelButton={() => this.handleGoToMain()}>
             <p>Thank you for signup in <strong>Frycolor</strong>. We already sent you an email to: <strong>{user_created.usEmail}</strong> to verify your account</p>
           </Modal>
         </div>
