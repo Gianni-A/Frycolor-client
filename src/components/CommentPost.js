@@ -11,7 +11,6 @@ function CommentPost(props) {
     let items = [...listResponses];
     let item = {...listResponses[objIndex]};
     
-
     if(statusLikeCom) {
       item.contReactions -= 1;
       item.userLike = false;
@@ -45,7 +44,7 @@ function CommentPost(props) {
           </div>
         </div>
       </div>
-  </div>
+    </div>
   ))
 }
 

@@ -53,26 +53,15 @@ function NewsFeed(props) {
             <FormPost 
               createPost={props.createPost}
             />
-            {Object.keys(error).length <= 0 ? listPost.map((post, index) => (
+            {Object.keys(error).length <= 0 ? 
               <Post  
-                key={index}
-                userId={post.userId}
-                imageUser={post.imageProfile}
-                nameUser={post.nameUser}
-                postId={post.nwId}
-                comment={post.comment}
-                image={post.image}
-                valueLikes={post.contReactions}
-                valueComments={post.listResponses.length}
-                listResponses={post.listResponses}
+                listPost={listPost}
                 addOrRemoveLike={props.addRemoveLikePost}
-                userLike={post.userLike}
                 saveResponsePost={props.saveResponsePost}
                 addOrRemoveLikeCom={props.addRemoveLikeCom}
-                dateTime={post.dateTime}
                 openModal={deleteOptionSelected}
               />
-            )) : <p className="error_post_empty">{error}</p>}
+             : <p className="error_post_empty">{error}</p>}
           </div> 
           <div className="col-md-3 border friend-component">
             <FriendsList
