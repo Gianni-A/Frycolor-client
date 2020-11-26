@@ -6,6 +6,8 @@ import { GET_POSTS_SUCCESSFULL,
   SAVE_RESPONSE_POST_FAILURE,
   DELETE_POST_SUCCESSFULL,
   DELETE_POST_FAILURE,
+  DELETE_RESPONSE_POST_SUCCESSFULL,
+  DELETE_RESPONSE_POST_FAILURE,
   GET_POSTS_LOADER } from '../types/NewsFeedTypes';
 
 import { serviceCall } from '../../util/Utils';
@@ -182,19 +184,49 @@ export const deletePostFailure = error => {
   }
 };
 
-export const deletePost = nwId => async dispatch => {
+export const deletePost = dataId => async dispatch => {
 
-  console.log(nwId);
-
-  /*serviceCall(
+  serviceCall(
     {
-      url: `/newsfeed/${nwId}/delete`,
+      url: `/newsfeed/${dataId.nwId}/delete`,
       method: 'PATCH'
     },
     dispatch,
     deletePostSuccessfull,
     deletePostFailure
-  );*/
+  );
 };
 
 /* Delete a post */
+
+
+/* Delete a response from a post */
+
+export const deleteResponsePostSuccessfull = response => {
+  return {
+    type: DELETE_RESPONSE_POST_SUCCESSFULL,
+    payload: response
+  }
+};
+
+export const deleteResponsePostFailure = error => {
+  return {
+    type: DELETE_RESPONSE_POST_FAILURE,
+    payload: error
+  }
+};
+
+export const deleteResponsePost = dataId => async dispatch => {
+
+  serviceCall(
+    {
+      url: `/newsresponse/${dataId.nwId}/delete/${dataId.nwResId}`,
+      method: 'DELETE'
+    },
+    dispatch,
+    deleteResponsePostSuccessfull,
+    deleteResponsePostFailure
+  );
+};
+
+/* Delete a response from a post */

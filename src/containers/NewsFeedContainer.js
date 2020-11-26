@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NewsFeed from '../pages/NewsFeed';
-import { getListPost, createPost, addRemovelikePost, saveResponsePost, addRemovelikeCom } from '../redux/actions/NewsFeedAction';
+import { getListPost, createPost, addRemovelikePost, saveResponsePost, addRemovelikeCom, deletePost, deleteResponsePost } from '../redux/actions/NewsFeedAction';
 import { getListFriends } from '../redux/actions/ProfileAction';
 
 const mapStateToProps = state => {
@@ -22,7 +22,9 @@ const mapDispatchToProps = dispatch => {
     addRemoveLikePost: data => dispatch(addRemovelikePost(data)),
     saveResponsePost: data => dispatch(saveResponsePost(data)),
     addRemoveLikeCom: data => dispatch(addRemovelikeCom(data)),
-    getListFriends: userId => dispatch(getListFriends(userId))
+    getListFriends: userId => dispatch(getListFriends(userId)),
+    deletePost: dataId => dispatch(deletePost(dataId)),
+    deleteResponsePost: dataId => dispatch(deleteResponsePost(dataId))
   }
 };
 

@@ -12,7 +12,8 @@ import $ from 'jquery';
 
 function NewsFeed(props) {
 
-  const[nwId, setNwId] = useState(0);
+  const[dataId, setDataId] = useState({});
+  const[typePost, setTypePost] = useState();
 
   useEffect(() => {
     const userInformation = getUserInformationStore();
@@ -24,13 +25,20 @@ function NewsFeed(props) {
     props.getListPost(data);
   }, []);
 
-  function deleteOptionSelected(nwId) {
-    console.log(nwId);
-    //$('#GeneralModal').modal('show')
+  function deleteOptionSelected(id, type) {
+    setDataId(id);
+    setTypePost(type);
+    $('#GeneralModal').modal('show');
   }
   
   function deletePost() {
-
+    //This way to use the same modal
+    if(typePost == 'Post') {
+      props.deletePost(dataId);
+    } else {
+      props.deleteResponsePost(dataId);
+    }
+    $('#GeneralModal').modal('hide');
   }
 
   const {listPost, listFriends, loader, error, cleanForm} = props;
@@ -56,20 +64,10 @@ function NewsFeed(props) {
             {Object.keys(error).length <= 0 ? listPost.map((post, index) => (
               <Post  
                 key={index}
-                userId={post.userId}
-                imageUser={post.imageProfile}
-                nameUser={post.nameUser}
-                postId={post.nwId}
-                comment={post.comment}
-                image={post.image}
-                valueLikes={post.contReactions}
-                valueComments={post.listResponses.length}
-                listResponses={post.listResponses}
+                post={post}
                 addOrRemoveLike={props.addRemoveLikePost}
-                userLike={post.userLike}
                 saveResponsePost={props.saveResponsePost}
                 addOrRemoveLikeCom={props.addRemoveLikeCom}
-                dateTime={post.dateTime}
                 openModal={deleteOptionSelected}
               />
             )) : <p className="error_post_empty">{error}</p>}
