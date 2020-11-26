@@ -124,6 +124,7 @@ function Post(props) {
               response={response}
               likeAnimationCom={likeAnimationCom}
               openModal={deleteOptionSelectedResponse}
+              updateResponsePost={props.updateResponsePost}
             />
           ))} 
           <FormResponse 

@@ -4,10 +4,10 @@ import { GET_POSTS_SUCCESSFULL,
          CREATE_POST_FAILURE,
          SAVE_RESPONSE_POST_SUCCESSFULL,
          SAVE_RESPONSE_POST_FAILURE,
-         DELETE_POST_SUCCESSFULL,
-         DELETE_RESPONSE_POST_FAILURE,
-         GET_POSTS_LOADER,
-         DELETE_RESPONSE_POST_SUCCESSFULL} from '../types/NewsFeedTypes';
+         UPDATE_RESPONSE_POST_SUCCESSFULL,
+         DELETE_RESPONSE_POST_SUCCESSFULL,
+         DELETE_POST_SUCCESSFULL,         
+         GET_POSTS_LOADER} from '../types/NewsFeedTypes';
 
 import { GET_LIST_FRIENDS_SUCCESSFULL,
          GET_LIST_FRIENDS_FAILURE } from '../types/ProfileTypes';        
@@ -47,7 +47,6 @@ export default(state = INITIAL_STATE, action) => {
       let user = payload.usId.usInfId;
       const commentPost = payload.usCommentId != null ? payload.usCommentId.usComComment : '';
       const image = payload.usMdId != null ? payload.usMdId.usMdPath : '';
-      console.log(JSON.stringify(payload));
       const newPost = {
         userId: payload.usId.usId,
         nwId: payload.nwId,
@@ -125,6 +124,21 @@ export default(state = INITIAL_STATE, action) => {
         error: payload,
         cleanForm: false
       }
+
+    case UPDATE_RESPONSE_POST_SUCCESSFULL:
+      const indexResPost = listPost.findIndex(obj => obj.nwId == payload.nwComOriginId);
+      const indexRes = listPost[indexResPost].listResponses.findIndex(obj => obj.nwResId == payload.nwResId);
+
+      //Changes values from the actual array to make it up to date
+      listPost[indexResPost].listResponses[indexRes].comment = payload.usComId.usComComment;
+      listPost[indexResPost].listResponses[indexRes].dateTime = payload.nwResTsUpdated;
+
+      return {
+        ...state,
+        listPost,
+        loader: false,
+        error: []
+      }   
       
     case DELETE_RESPONSE_POST_SUCCESSFULL:
       const payloadResponsePost = JSON.parse(payload.dataJSON);

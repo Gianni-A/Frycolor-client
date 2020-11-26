@@ -69,6 +69,7 @@ function NewsFeed(props) {
                 saveResponsePost={props.saveResponsePost}
                 addOrRemoveLikeCom={props.addRemoveLikeCom}
                 openModal={deleteOptionSelected}
+                updateResponsePost={props.updateResponsePost}
               />
             )) : <p className="error_post_empty">{error}</p>}
           </div> 

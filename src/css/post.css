@@ -95,6 +95,14 @@
   margin-right: 10px;
 }
 
+.cancel-button-response {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-left: -15px;
+}
+
 /*Comments Section*/
 
 /* FormResponse.js */
