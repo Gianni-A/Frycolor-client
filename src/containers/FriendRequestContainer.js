@@ -4,11 +4,10 @@ import { getListFriendRequest, approveRejectRequest } from '../redux/actions/Fri
 import { getListFriends } from '../redux/actions/ProfileAction';
 
 const mapStateToProps = state => {
-  const { listFriendsRequest, listFriends, actionTook, loader, error } = state.friendRequest;
+  const { listFriendsRequest, listFriends, loader, error } = state.friendRequest;
   return {
     listFriendsRequest,
     listFriends,
-    actionTook,
     loader,
     error
   }

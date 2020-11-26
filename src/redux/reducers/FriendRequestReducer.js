@@ -10,14 +10,17 @@ import { GET_LIST_FRIENDS_SUCCESSFULL,
 const INITIAL_STATE = {
   listFriendsRequest: [],
   listFriends: [],
-  actionTook: '',
   loader: false,
   error: []
 }
 
 export default(state = INITIAL_STATE, action = '') => {
-  switch(action.type) {
+
+  const { listFriendsRequest } = state;
+
+  switch(action.type) {    
     case GET_LIST_FRIEND_REQUEST_SUCCESSFULL:
+
       return {
         ...state,
         listFriendsRequest: action.payload,
@@ -33,17 +36,17 @@ export default(state = INITIAL_STATE, action = '') => {
       }
 
     case APPROVE_REJECT_FRIEND_REQUEST_SUCCESSFULL:
-      const { message } = action.payload;
+      const { message, dataJSON } = action.payload;
+      const data = JSON.parse(dataJSON);
+      const indexReq = listFriendsRequest.findIndex((obj => obj.frdId == data.frdId));
+
+      listFriendsRequest[indexReq].actionTook = message;
+
       return {
         ...state,
-        actionTook: message
-      }
-      
-    case APPROVE_REJECT_FRIEND_REQUEST_FAILURE:
-      return {
-        ...state,
-        actionTook: ''
-      }  
+        listFriendsRequest,
+        loader: false
+      } 
 
       case GET_LIST_FRIENDS_SUCCESSFULL:
       return {

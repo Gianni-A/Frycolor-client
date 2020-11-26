@@ -35,11 +35,6 @@ function HeaderPage() {
             <a className="dropdown-item" href="/changePassword">Change password</a>
           </div>
         </div>
-
-
-        
-
-
       </div>
     </div>
   )

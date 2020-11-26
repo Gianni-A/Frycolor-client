@@ -32,7 +32,7 @@ function FriendRequest(props) {
     props.approveRejectRequest(data);
   }
 
-  const { listFriendsRequest, listFriends, actionTook, error, loader } = props;
+  const { listFriendsRequest, listFriends, error, loader } = props;
 
   return(
     <section className="main-page">
@@ -50,12 +50,12 @@ function FriendRequest(props) {
                   <a href={`/profile/${user.frdUsId.usInfId.usInfId}`} className="lbl_name_friend">{user.frdUsId.usInfId.usInfName} {user.frdUsId.usInfId.usInfLastname}</a>
                 </div>
                 
-                {Object.keys(actionTook).length <= 0 ? 
+                {user.actionTook == undefined ? 
                   <div className="col-md-5">
                     <button className="btn btn-danger f-right" onClick={() => rejectRequest(user.frdId)}>Reject</button>
                     <button className="btn btn-success ml-4"  onClick={() => approveRequest(user.frdId)}>Approve</button>
                   </div>
-                : <p className="">{actionTook}</p>
+                : <p className="">{user.actionTook}</p>
                 }
                 
               </div>
