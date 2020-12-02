@@ -48,7 +48,7 @@ class Signup extends Component {
   }
 
   handleOpenModal() {
-    $('#GeneralModal').modal('show');
+    $('#sigup_success').modal('show');
   }
 
   handleGoToMain() {
@@ -95,6 +95,7 @@ class Signup extends Component {
             </div>
           </div>
           <Modal 
+            id={'sigup_success'}
             title={'User created'} 
             acceptButton={() => this.handleGoToMain()} 
             cancelButton={() => this.handleGoToMain()}>
