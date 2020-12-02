@@ -28,7 +28,7 @@ function NewsFeed(props) {
   function deleteOptionSelected(id, type) {
     setDataId(id);
     setTypePost(type);
-    $('#GeneralModal').modal('show');
+    $('#delete_post').modal('show');
   }
   
   function deletePost() {
@@ -38,16 +38,12 @@ function NewsFeed(props) {
     } else {
       props.deleteResponsePost(dataId);
     }
-    $('#GeneralModal').modal('hide');
+    $('#delete_post').modal('hide');
   }
 
   const {listPost, listFriends, loader, error, cleanForm} = props;
 
-  //Clean form from publishing a Post (FormPost)
-  if(cleanForm) {
-    document.getElementById("comment-input-post").value = "";
-    document.getElementById("file-input").value = "";
-  }
+  console.log(cleanForm)
   
   return(
     <section className="main-page">
@@ -60,6 +56,7 @@ function NewsFeed(props) {
           <div className="col-md-6 border">
             <FormPost 
               createPost={props.createPost}
+              cleanForm={cleanForm}
             />
             {Object.keys(error).length <= 0 ? listPost.map((post, index) => (
               <Post  
@@ -81,9 +78,10 @@ function NewsFeed(props) {
           </div>  
         </div>
         <Modal 
-          title={'Delete a post'} 
+          id={'delete_post'}
+          title={'Delete a post'}
           acceptButton={() => deletePost()} 
-          cancelButton={() => $('#GeneralModal').modal('hide')}>
+          cancelButton={() => $('#delete_post').modal('hide')}>
             <p>Are you sure you want to delete the post selected?</p>
         </Modal>
       </div>

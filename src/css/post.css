@@ -17,7 +17,7 @@
 }
 
 .card-text {
-  padding-left: 10px;
+  padding-left: 15px;
   padding-right: 10px;
 }
 
@@ -101,6 +101,10 @@
   cursor: pointer;
   margin-top: 15px;
   margin-left: -15px;
+}
+
+.response-reaction {
+  float: right !important;
 }
 
 /*Comments Section*/

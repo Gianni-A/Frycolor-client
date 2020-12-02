@@ -6,8 +6,14 @@
 
 .image-upload {
   float: right;
+}
+
+.check-image-form {
+  float: right;
+  margin-right: 10px;
   cursor: pointer;
 }
+
 
 .form_post_container {
   margin: 30px;

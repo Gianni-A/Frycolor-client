@@ -68,7 +68,7 @@ export default(state = INITIAL_STATE, action) => {
         listPost,
         error: [],
         loader: false,
-        cleanForm: commentPost != "" ? true : false
+        cleanForm: true
       } 
       
     case CREATE_POST_FAILURE:
