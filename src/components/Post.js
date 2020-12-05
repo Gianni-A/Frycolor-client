@@ -118,15 +118,14 @@ function Post(props) {
           
         </div>
         <div className={statusSection ? 'section_comments' : 'section_comments_hide'}>
-          {listResponses.map((response, index) => (
+          
             <CommentPost
-              key={index} 
-              response={response}
+              listResponses={listResponses}
               likeAnimationCom={likeAnimationCom}
               openModal={deleteOptionSelectedResponse}
               updateResponsePost={props.updateResponsePost}
             />
-          ))} 
+          
           <FormResponse 
             addComment={addComment}
           />
