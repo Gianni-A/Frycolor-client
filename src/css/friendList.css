@@ -17,3 +17,15 @@
 .list_friends {
   padding-left: 10px;
 }
+
+/* FriendRequest */
+
+.list-request-content {
+  margin-top: 30px;
+}
+
+.item-request {
+  margin-bottom: 30px;
+}
+
+/* FriendRequest */

@@ -9,6 +9,7 @@ const INITIAL_STATE = {
 };
 
 export default(state = INITIAL_STATE, action) => {
+  state.error = [];
   switch(action.type) {
     case LOGIN_SUCCESSFUL:
       return {

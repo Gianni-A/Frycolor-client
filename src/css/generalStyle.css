@@ -1,0 +1,24 @@
+.main-page {
+  background-color: #f3f2ef;
+}
+
+.menu-component, .friend-component {
+  background-color: #fff;
+}
+
+/* Menu */
+
+.item-menu {
+  margin-top: 20px;
+}
+
+.text-option-menu {
+  margin-left: 20px;
+  color: black;
+}
+
+.menu-section a:link {
+  text-decoration: none;
+}
+
+/* Menu */

@@ -51,6 +51,10 @@ export const calculateAge = birthday => {
   return stringYear.replace('ago','');
 };
 
+export const calculatePost = dateTime => {
+  return moment(dateTime).fromNow();
+}
+
 export const getUserInformationStore = () => {
   const getUser = localStorage.getItem('userInformation');
   const userInformation = JSON.parse(getUser);

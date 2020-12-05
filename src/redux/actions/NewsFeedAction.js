@@ -4,6 +4,12 @@ import { GET_POSTS_SUCCESSFULL,
   CREATE_POST_FAILURE,
   SAVE_RESPONSE_POST_SUCCESSFULL,
   SAVE_RESPONSE_POST_FAILURE,
+  DELETE_POST_SUCCESSFULL,
+  DELETE_POST_FAILURE,
+  UPDATE_RESPONSE_POST_SUCCESSFULL,
+  UPDATE_RESPONSE_POST_FAILURE,
+  DELETE_RESPONSE_POST_SUCCESSFULL,
+  DELETE_RESPONSE_POST_FAILURE,
   GET_POSTS_LOADER } from '../types/NewsFeedTypes';
 
 import { serviceCall } from '../../util/Utils';
@@ -163,3 +169,103 @@ export const addRemovelikeCom = data => async dispatch => {
 };
 
 /* Add reaction to a response of a post */
+
+/* Delete a post */
+
+export const deletePostSuccessfull = response => {
+  return {
+    type: DELETE_POST_SUCCESSFULL,
+    payload: response
+  }
+};
+
+export const deletePostFailure = error => {
+  return {
+    type: DELETE_POST_FAILURE,
+    payload: error
+  }
+};
+
+export const deletePost = dataId => async dispatch => {
+
+  serviceCall(
+    {
+      url: `/newsfeed/${dataId.nwId}/delete`,
+      method: 'PATCH'
+    },
+    dispatch,
+    deletePostSuccessfull,
+    deletePostFailure
+  );
+};
+
+/* Delete a post */
+
+/* Update a response from a post */
+
+export const updateResponsePostSuccessfull = response => {
+  return {
+    type: UPDATE_RESPONSE_POST_SUCCESSFULL,
+    payload: response
+  }
+};
+
+export const updateResponsePostFailure = error => {
+  return {
+    type: UPDATE_RESPONSE_POST_FAILURE,
+    payload: error
+  }
+};
+
+export const updateResponsePost = data => async dispatch => {
+
+  const formData = new FormData();
+  formData.append("nwResId", data.nwResId);
+  formData.append("comment", data.comment);
+
+  serviceCall(
+    {
+      url: `/newsresponse/edit`,
+      method: 'PATCH',
+      body: formData
+    },
+    dispatch,
+    updateResponsePostSuccessfull,
+    updateResponsePostFailure,
+    false
+  );
+};
+
+/* Update a response from a post */
+
+
+/* Delete a response from a post */
+
+export const deleteResponsePostSuccessfull = response => {
+  return {
+    type: DELETE_RESPONSE_POST_SUCCESSFULL,
+    payload: response
+  }
+};
+
+export const deleteResponsePostFailure = error => {
+  return {
+    type: DELETE_RESPONSE_POST_FAILURE,
+    payload: error
+  }
+};
+
+export const deleteResponsePost = dataId => async dispatch => {
+
+  serviceCall(
+    {
+      url: `/newsresponse/${dataId.nwId}/delete/${dataId.nwResId}`,
+      method: 'DELETE'
+    },
+    dispatch,
+    deleteResponsePostSuccessfull,
+    deleteResponsePostFailure
+  );
+};
+
+/* Delete a response from a post */

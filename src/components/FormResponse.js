@@ -13,13 +13,13 @@ function FormResponse(props) {
   }
 
   return(
-    <div className="container">
+    <div className="container form-response-post">
       <div className="row">
-        <div className="col-md-10">
+        <div className="col-md-9">
           <textarea className="form-control" rows="2" value={commentRes} onChange={(e) => setCommentRes(e.target.value)}></textarea>
         </div>
         <div className="col-md-2">
-          <button className="btn btn-primary" onClick={sendComment}>Send</button>
+          <button className="btn btn-primary btn-response-post" onClick={sendComment}>Send</button>
         </div>
       </div>
     </div>
